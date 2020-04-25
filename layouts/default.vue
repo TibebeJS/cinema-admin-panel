@@ -99,9 +99,14 @@ export default {
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-calendar',
+          title: 'Schedules',
+          to: '/schedules'
+        },
+        {
+          icon: 'mdi-film',
+          title: 'Cinemas',
+          to: '/cinemas'
         }
       ],
       rightDrawer: true,

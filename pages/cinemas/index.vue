@@ -5,55 +5,75 @@
     align-center
   >
 
-   <v-card width="100%">
-        <v-card-title class="headline">
-          Cinemas
-        </v-card-title>
-        <v-card-subtitle>
-            Manage GAST cinema Venues
-        </v-card-subtitle>
-        <v-card-text>
-         
-        <v-layout>
-          <v-card
-            class="mx-auto"
-            max-width="344"
-            outlined
-            v-for="cinema of cinemas"
-            :key="cinema.id"
-          >
-            <v-list-item three-line>
-              <v-list-item-content>
-                <div class="overline mb-4">venue</div>
-                <v-list-item-title class="headline mb-1">{{ cinema.name }}</v-list-item-title>
-                <v-list-item-subtitle>{{ cinema.description }}</v-list-item-subtitle>
-              </v-list-item-content>
+    <v-card width="100%">
+      <v-card-title class="headline">
+        Cinemas
+        <v-spacer></v-spacer>
+        <v-btn>New Venue</v-btn>
+      </v-card-title>
+      <v-card-subtitle>
+          Manage GAST cinema Venues
+      </v-card-subtitle>
+      <v-card-text>
+        
+      <v-layout>
+        <v-card
+          class="mx-auto"
+          max-width="344"
+          outlined
+          v-for="cinema of cinemas"
+          :key="cinema.id"
+        >
+          <v-list-item three-line>
+            <v-list-item-content>
+              <div class="overline mb-4">venue</div>
+              <v-list-item-title class="headline mb-1">{{ cinema.name }}</v-list-item-title>
+              <v-list-item-subtitle>{{ cinema.description }}</v-list-item-subtitle>
+            </v-list-item-content>
 
-              <v-list-item-avatar
-                tile
-                size="80"
-                color="grey"
-              >
-                <v-img :src="cinema.picture"></v-img>
-              </v-list-item-avatar>
-            </v-list-item>
+            <v-list-item-avatar
+              tile
+              size="80"
+              color="grey"
+            >
+              <v-img :src="cinema.picture"></v-img>
+            </v-list-item-avatar>
+          </v-list-item>
 
-            <v-card-actions>
-              <v-btn text>manage</v-btn>
-              <v-btn text>schedules</v-btn>
-            </v-card-actions>
-          </v-card>
-       </v-layout>
-      </v-card-text>
-    </v-card>
+          <v-card-actions>
+            <v-btn text>manage</v-btn>
+            <v-btn text>schedules</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-layout>
+    </v-card-text>
+  </v-card>
+
+
+  <v-card width="100%">
+    <v-card-title class="headline">
+      Seat Arrangement
+      <v-spacer></v-spacer>
+      <v-btn>New Venue</v-btn>
+    </v-card-title>
+    <v-card-subtitle>
+        Manage how seats are arranged inside this venue
+    </v-card-subtitle>
+    <v-card-text>
+      
+      <seat-arrangement></seat-arrangement>
+    </v-card-text>
+  </v-card>
+        
   </v-layout>
 </template>
 
 <script>
+import seatArrangement from '~/components/seat-arrangement.vue'
 
 export default {
   components: {
- 
+    seatArrangement
   },
   data() {
       return {

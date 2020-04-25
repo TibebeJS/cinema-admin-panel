@@ -14,51 +14,38 @@
         </v-card-subtitle>
         <v-card-text>
          
-
         <v-layout>
-  <v-card
-    class="mx-auto"
-    max-width="344"
-    outlined
-    v-for="cinema of cinemas"
-  >
-    <v-list-item three-line :key="cinema.id">
-      <v-list-item-content>
-        <div class="overline mb-4">venue</div>
-        <v-list-item-title class="headline mb-1">{{ cinema.name }}</v-list-item-title>
-        <v-list-item-subtitle>{{ cinema.description }}</v-list-item-subtitle>
-      </v-list-item-content>
-
-      <v-list-item-avatar
-        tile
-        size="80"
-        color="grey"
-      >
-        <v-img :src="cinema.picture"></v-img>
-      </v-list-item-avatar>
-    </v-list-item>
-
-    <v-card-actions :key="cinema.id">
-      <v-btn text>manage</v-btn>
-      <v-btn text>schedules</v-btn>
-    </v-card-actions>
-  </v-card>
-       </v-layout>
-            
-
-        </v-card-text :key="cinema.id">
-        <v-card-actions>
-          <v-spacer />
-          <v-btn
-            color="primary"
-            nuxt
-            to="/inspire"
+          <v-card
+            class="mx-auto"
+            max-width="344"
+            outlined
+            v-for="cinema of cinemas"
+            :key="cinema.id"
           >
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-   
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="overline mb-4">venue</div>
+                <v-list-item-title class="headline mb-1">{{ cinema.name }}</v-list-item-title>
+                <v-list-item-subtitle>{{ cinema.description }}</v-list-item-subtitle>
+              </v-list-item-content>
+
+              <v-list-item-avatar
+                tile
+                size="80"
+                color="grey"
+              >
+                <v-img :src="cinema.picture"></v-img>
+              </v-list-item-avatar>
+            </v-list-item>
+
+            <v-card-actions>
+              <v-btn text>manage</v-btn>
+              <v-btn text>schedules</v-btn>
+            </v-card-actions>
+          </v-card>
+       </v-layout>
+      </v-card-text>
+    </v-card>
   </v-layout>
 </template>
 

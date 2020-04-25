@@ -41,27 +41,11 @@
           </v-list-item>
 
           <v-card-actions>
-            <v-btn text>manage</v-btn>
-            <v-btn text>schedules</v-btn>
+            <v-btn text @click="routeTo('/cinemas/manage/1')">manage</v-btn>
+            <v-btn text @click="routeTo('/cinemas/schedules/1')">schedules</v-btn>
           </v-card-actions>
         </v-card>
       </v-layout>
-    </v-card-text>
-  </v-card>
-
-
-  <v-card width="100%">
-    <v-card-title class="headline">
-      Seat Arrangement
-      <v-spacer></v-spacer>
-      <v-btn>New Venue</v-btn>
-    </v-card-title>
-    <v-card-subtitle>
-        Manage how seats are arranged inside this venue
-    </v-card-subtitle>
-    <v-card-text>
-      
-      <seat-arrangement></seat-arrangement>
     </v-card-text>
   </v-card>
         
@@ -69,11 +53,8 @@
 </template>
 
 <script>
-import seatArrangement from '~/components/seat-arrangement.vue'
-
 export default {
   components: {
-    seatArrangement
   },
   data() {
       return {
@@ -84,6 +65,11 @@ export default {
               {"id":4,"description":"Gold 2 cinema", "picture": "https://cinema.gastmall.net/views/images/cinema/14.jpg", "name":"Gold 2","rows":null,"columns":null,"Schedules":[{"id":27,"date":"2020-04-21","time":"16:58:00","CinemaId":4,"MovieId":2,"MovieTypeId":2}]}
             ]
       }
+  },
+  methods: {
+    routeTo(path) {
+      this.$router.push(path)
+    }
   }
 }
 </script>

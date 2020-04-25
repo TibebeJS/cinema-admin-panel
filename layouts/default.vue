@@ -81,6 +81,19 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
+    <v-fab-transition>
+      <v-btn
+      fixed
+        fab
+        large
+        dark
+        bottom
+        right
+        @click="toggleDarkMode"
+      >
+        <v-icon>mdi-brightness-6</v-icon>
+      </v-btn>
+    </v-fab-transition>
     <v-footer :fixed="fixed" app>
       <span>&copy; {{ new Date().getFullYear() }} GAST Entertainemnt Mall</span>
     </v-footer>
@@ -111,6 +124,11 @@ export default {
       ],
       rightDrawer: true,
       title: 'Gast Cinema Admin Panel'
+    }
+  },
+  methods: {
+    toggleDarkMode() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     }
   }
 }

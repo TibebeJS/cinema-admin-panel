@@ -1,8 +1,24 @@
 <template>
 <div class="venue">
     <ul class="squares" v-for="row of Object.keys(Array(rows).fill(undefined))">
-		<li :class="resolveSeatType(row, col)" v-for="col of Object.keys(Array(columns).fill(undefined))">
-		</li>
+<v-menu v-for="col of Object.keys(Array(columns).fill(undefined))" :key="`${row}:${col}`">
+      <template v-slot:activator="{ on }">
+          <li :class="resolveSeatType(row, col)" v-on="on"></li>
+      </template>
+      <v-list>
+        <v-list-item
+          v-for="(item, index) in items"
+          :key="index"
+          @click=""
+        >
+          <v-list-item-title>{{ item.title }}</v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+
+     
+
+
     </ul>
   </div>
 </template>
@@ -98,7 +114,11 @@ export default {
 					column: 20 + i,
 					row: 0
 				}
-			})
+			}),
+       items: [
+        { title: 'Mark Unavailable' },
+        { title: 'Change Type' },
+      ],
 		}
 	},
 

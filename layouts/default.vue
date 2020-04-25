@@ -122,7 +122,7 @@ export default {
           to: '/cinemas'
         }
       ],
-      rightDrawer: true,
+      rightDrawer: false,
       title: 'Gast Cinema Admin Panel'
     }
   },

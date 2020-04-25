@@ -4,61 +4,49 @@
     justify-center
     align-center
   >
-    <v-flex
-      xs12
-      sm8
-      md6
-    >      <v-card>
+
+   <v-card width="100%">
         <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+          Cinemas
         </v-card-title>
+        <v-card-subtitle>
+            Manage GAST cinema Venues
+        </v-card-subtitle>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
-          >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
-          >
-            Nuxt GitHub
-          </a>
-        </v-card-text>
+         
+
+        <v-layout>
+  <v-card
+    class="mx-auto"
+    max-width="344"
+    outlined
+    v-for="cinema of cinemas"
+  >
+    <v-list-item three-line :key="cinema.id">
+      <v-list-item-content>
+        <div class="overline mb-4">venue</div>
+        <v-list-item-title class="headline mb-1">{{ cinema.name }}</v-list-item-title>
+        <v-list-item-subtitle>{{ cinema.description }}</v-list-item-subtitle>
+      </v-list-item-content>
+
+      <v-list-item-avatar
+        tile
+        size="80"
+        color="grey"
+      >
+        <v-img :src="cinema.picture"></v-img>
+      </v-list-item-avatar>
+    </v-list-item>
+
+    <v-card-actions :key="cinema.id">
+      <v-btn text>manage</v-btn>
+      <v-btn text>schedules</v-btn>
+    </v-card-actions>
+  </v-card>
+       </v-layout>
+            
+
+        </v-card-text :key="cinema.id">
         <v-card-actions>
           <v-spacer />
           <v-btn
@@ -70,7 +58,7 @@
           </v-btn>
         </v-card-actions>
       </v-card>
-    </v-flex>
+   
   </v-layout>
 </template>
 
@@ -79,6 +67,16 @@
 export default {
   components: {
  
+  },
+  data() {
+      return {
+          cinemas: [
+              {"id":1,"description":"Cinema 1 cinema", "picture":"https://cinema.gastmall.net/views/images/cinema/2.jpg", "name":"Cinema 1","rows":null,"columns":null,"Schedules":[{"id":15,"date":"2020-04-19","time":"14:15:00","CinemaId":1,"MovieId":2,"MovieTypeId":1},{"id":34,"date":"2020-04-24","time":"17:58:00","CinemaId":1,"MovieId":4,"MovieTypeId":1}]},
+              {"id":2,"description":"Cinema 2 cinema", "picture": "https://cinema.gastmall.net/views/images/cinema/2.jpg", "name":"Cinema 2","rows":null,"columns":null,"Schedules":[{"id":29,"date":"2020-04-20","time":"21:04:00","CinemaId":2,"MovieId":1,"MovieTypeId":2},{"id":16,"date":"2020-04-19","time":"14:17:00","CinemaId":2,"MovieId":2,"MovieTypeId":1},{"id":30,"date":"2020-04-25","time":"07:55:00","CinemaId":2,"MovieId":3,"MovieTypeId":1},{"id":26,"date":"2020-04-19","time":"16:09:00","CinemaId":2,"MovieId":4,"MovieTypeId":2}]},
+              {"id":3,"description":"Gold 1 cinema", "picture": "https://cinema.gastmall.net/views/images/cinema/14.jpg", "name":"Gold 1","rows":null,"columns":null,"Schedules":[{"id":33,"date":"2020-04-22","time":"06:35:00","CinemaId":3,"MovieId":1,"MovieTypeId":2},{"id":14,"date":"2020-04-19","time":"14:08:00","CinemaId":3,"MovieId":2,"MovieTypeId":1}]},
+              {"id":4,"description":"Gold 2 cinema", "picture": "https://cinema.gastmall.net/views/images/cinema/14.jpg", "name":"Gold 2","rows":null,"columns":null,"Schedules":[{"id":27,"date":"2020-04-21","time":"16:58:00","CinemaId":4,"MovieId":2,"MovieTypeId":2}]}
+            ]
+      }
   }
 }
 </script>

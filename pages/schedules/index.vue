@@ -12,93 +12,73 @@
       <v-expansion-panels>
         <v-expansion-panel>
           <v-expansion-panel-header>
-            <span class="align-start"
-              ><v-icon>mdi-filter</v-icon> Filters :
-              <span class="secondary--text">{{
-                picker.slice(0, 10)
-              }}</span></span
-            >
+            <v-row class="align-start align-baseline">
+              <v-icon>mdi-filter</v-icon> Filters :
+              <span class="secondary--text">{{ picker.slice(0, 10) }}</span>
+
+              <v-col
+                v-for="(selection, i) in selections"
+                :key="selection.text"
+                class="shrink"
+              >
+                <v-chip
+                  :disabled="loading"
+                  close
+                  @click:close="selected.splice(i, 1)"
+                  small
+                >
+                  {{ selection.text }}
+                </v-chip>
+              </v-col>
+            </v-row>
           </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <v-date-picker
-              v-model="picker"
-              landscape
-              type="month"
-              no-title
-              reactive
-            ></v-date-picker>
-            <v-date-picker
-              v-model="picker"
-              landscape
-              no-title
-              reactive
-            ></v-date-picker>
+            <v-row>
+              <v-col>
+                <v-date-picker
+                  v-model="picker"
+                  landscape
+                  type="month"
+                  no-title
+                  reactive
+                ></v-date-picker>
+                <v-date-picker
+                  v-model="picker"
+                  landscape
+                  no-title
+                  reactive
+                ></v-date-picker>
+              </v-col>
+              <v-col>
+                <v-list>
+                  <span class="subtitle-1">
+                    Movie Filters:
+                  </span>
+                  <template v-for="(item, i) in categories">
+                    <v-list-item
+                      :class="{ 'active-filter': selected.includes(i) }"
+                      class="my-2"
+                      :key="i"
+                      :disabled="selected.includes(i)"
+                      @click="selected.push(i)"
+                    >
+                      <v-list-item-title v-text="item.text"></v-list-item-title>
+                    </v-list-item>
+                  </template>
+                </v-list>
+              </v-col>
+            </v-row>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
-
-      <v-layout>
-        <v-card
-          class="mx-auto my-12 px-2"
-          max-width="374"
-          v-for="schedule of schedules"
-          :key="schedule"
-        >
-          <v-img
-            height="250"
-            :src="`http://image.tmdb.org/t/p/w185/${schedule.poster_path}`"
-          ></v-img>
-
-          <v-card-title>{{ schedule.title }}</v-card-title>
-
-          <v-card-text>
-            <v-row align="center" class="mx-0">
-              Ratings:
-              <div class="grey--text ml-1">{{ schedule.vote }}</div>
-            </v-row>
-
-            <div>{{ schedule.overview.slice(0, 100) }} ...</div>
-          </v-card-text>
-
-          <v-divider class="mx-4"></v-divider>
-
-          <v-card-title>Recorded Schedules</v-card-title>
-
-          <v-card-text>
-            <v-chip-group
-              v-model="selection"
-              active-class="deep-purple accent-4 white--text"
-              column
-            >
-              <v-chip
-                class="ma-2"
-                close
-                text-color="white"
-                close-icon="mdi-delete"
-                v-for="movieSchedule in schedule.schedules"
-                :key="movieSchedule.id"
-                @click:close="close"
-              >
-                <v-avatar left>
-                  2D
-                </v-avatar>
-                {{ movieSchedule.Cinema.name }} |
-                {{ movieSchedule.time.slice(0, 5) }}
-              </v-chip>
-            </v-chip-group>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-btn text color="error lighten-2" outlined>
-              remove all
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-layout>
     </v-card-text>
   </v-card>
 </template>
-<style scoped></style>
+<style scoped>
+.active-filter {
+  border: 1px solid darkcyan;
+}
+</style>
 <script>
 export default {
   data() {
@@ -233,7 +213,44 @@ export default {
             }
           ]
         }
-      ]
+      ],
+
+      items: [
+        {
+          text: '2D Movies'
+        },
+        {
+          text: '3D Movies'
+        }
+      ],
+      loading: false,
+      search: '',
+      selected: []
+    }
+  },
+  computed: {
+    allSelected() {
+      return this.selected.length === this.items.length
+    },
+    categories() {
+      const search = this.search.toLowerCase()
+
+      if (!search) return this.items
+
+      return this.items.filter(item => {
+        const text = item.text.toLowerCase()
+
+        return text.indexOf(search) > -1
+      })
+    },
+    selections() {
+      const selections = []
+
+      for (const selection of this.selected) {
+        selections.push(this.items[selection])
+      }
+
+      return selections
     }
   }
 }

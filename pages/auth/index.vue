@@ -32,6 +32,10 @@
       v-model="signin.valid"
     >
 
+      <v-alert type="error" v-if="signInError">
+        {{ signInError }}
+      </v-alert>
+
       <v-text-field
         v-model="signin.emailAddress"
         :rules="emailRules"
@@ -56,6 +60,7 @@
 
       <v-btn
         :disabled="!signin.valid"
+        @click="signIn"
         class="mr-4"
       >
         Sign in
@@ -101,6 +106,7 @@ export default {
         rememberMe: true,
         valid: false
       },
+      signInError: null,
       emailRules: [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -116,5 +122,17 @@ export default {
         ]
     }
   },
+  methods: {
+    signIn() {
+      this.signInError = null;
+      this.$store.dispatch('signInWithEmailAndPassword', this.signin).then(() => {
+        this.signin.emailAddress = ''
+        this.signin.password = ''
+      }).catch((e) => {
+       this.signInError = e.message;
+      })
+    },
+  }
+  
 }
 </script>

@@ -10,8 +10,8 @@ var config = {
     projectId: "gast-cinema",
     storageBucket: "gast-cinema.appspot.com",
     messagingSenderId: "1066640483133",
-    // appId: "1:1066640483133:web:b05289414c20c38faddb54",
-    // measurementId: "G-076KN0BBGZ"
+    appId: "1:1066640483133:web:b05289414c20c38faddb54",
+    measurementId: "G-076KN0BBGZ"
 }
 
 

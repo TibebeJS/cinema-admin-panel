@@ -78,7 +78,6 @@
     </v-card>
 
     <v-card width="100%" class="mt-5">
-     
       <v-card-text>
         <v-layout>
           <v-card
@@ -120,7 +119,6 @@
                   close-icon="mdi-delete"
                   v-for="movieSchedule in schedule.schedules"
                   :key="movieSchedule.id"
-                  @click:close="close"
                 >
                   <v-avatar left>
                     2D

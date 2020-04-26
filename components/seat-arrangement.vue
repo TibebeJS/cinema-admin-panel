@@ -1,10 +1,13 @@
 <template>
-  <div class="venue" style="max-width: 900px;">
+  <div class="venue" style="max-width: 1000px;">
     <ul
       class="squares"
       v-for="row of Object.keys(Array(rows).fill(undefined))"
       :key="row"
     >
+    <span>
+    <v-icon style="font-size: 36px; color:gray;" class="pa-0 mr-3">mdi-format-align-justify</v-icon>
+    </span>
       <v-menu
         v-for="col of Object.keys(Array(columns).fill(undefined))"
         :key="`${row}:${col}`"
@@ -123,8 +126,9 @@ export default {
   data() {
     return {
       rows: 11,
-      columns: 19,
-      nonSeats: Array(6)
+      columns: 18,
+      nonSeats: [
+        ...Array(6)
         .fill(undefined)
         .map((_, i) => {
           return {
@@ -132,6 +136,15 @@ export default {
             row: 8
           }
         }),
+         ...Array(this.rows)
+        .fill(undefined)
+        .map((_, i) => {
+          return {
+            column: 0,
+            row: i
+          }
+        }),
+      ],
       items: [{ title: 'Mark Unavailable' }, { title: 'Change Type' }]
     }
   },

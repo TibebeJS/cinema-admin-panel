@@ -1,34 +1,31 @@
 <template>
-<div class="venue">
-    <ul class="squares" v-for="row of Object.keys(Array(rows).fill(undefined))">
-<v-menu v-for="col of Object.keys(Array(columns).fill(undefined))" :key="`${row}:${col}`">
-      <template v-slot:activator="{ on }">
-          <v-icon  v-on="on">mdi-seat</v-icon>
-      </template>
-      <v-list>
-        <v-list-item
-          v-for="(item, index) in items"
-          :key="index"
-          @click=""
-        >
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
-
-     
-
-
+  <div class="venue">
+    <ul
+      class="squares"
+      v-for="row of Object.keys(Array(rows).fill(undefined))"
+      :key="row"
+    >
+      <v-menu
+        v-for="col of Object.keys(Array(columns).fill(undefined))"
+        :key="`${row}:${col}`"
+      >
+        <template v-slot:activator="{ on }">
+          <v-icon v-on="on">mdi-seat</v-icon>
+        </template>
+        <v-list>
+          <v-list-item v-for="(item, index) in items" :key="index">
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </ul>
   </div>
 </template>
 
 <style>
-
-
 :root {
-  --square-size: 15px;
-  --square-gap: 5px;
+  --square-size: 0.6%;
+  --square-gap: 0.7%;
   --week-width: calc(var(--square-size) + var(--square-gap));
   --seat-color: lightcyan;
   --non-seat-color: transparent;
@@ -36,9 +33,15 @@
   --seat-hover-color: darkcyan;
 }
 
-.months { grid-area: months; }
-.days { grid-area: days; }
-.squares { grid-area: squares; }
+.months {
+  grid-area: months;
+}
+.days {
+  grid-area: days;
+}
+.squares {
+  grid-area: squares;
+}
 
 .venue {
   grid-template-columns: auto 1fr;
@@ -47,7 +50,6 @@
   box-sizing: border-box;
   padding: 50px;
 }
-
 
 .days,
 .squares {
@@ -63,18 +65,19 @@
 }
 
 .squares > li {
-	list-style-type: none;
-	height: var(--square-size);
-	width: var(--square-size);
+  list-style-type: none;
+  height: var(--square-size);
+  width: var(--square-size);
 }
 
-
-.seat:hover, .seat-taken:hover {
-	background-color: var(--seat-hover-color) !important;
+.seat:hover,
+.seat-taken:hover {
+  background-color: var(--seat-hover-color) !important;
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 12px;
 }
 
@@ -97,43 +100,44 @@ body {
 }
 
 .non-seat:hover {
-	background-color: transparent !important;
+  background-color: transparent !important;
 }
 
 .seat-taken {
   background-color: var(--taken-seat-color) !important;
 }
-
 </style>
 
 <script>
 export default {
-	data() {
-		return {
-			rows: 10,
-			columns: 75,
-			nonSeats: Array(30).fill(undefined).map((_, i) => {
-				return {
-					column: 20 + i,
-					row: 0
-				}
-			}),
-       items: [
-        { title: 'Mark Unavailable' },
-        { title: 'Change Type' },
-      ],
-		}
-	},
+  data() {
+    return {
+      rows: 10,
+      columns: 75,
+      nonSeats: Array(30)
+        .fill(undefined)
+        .map((_, i) => {
+          return {
+            column: 20 + i,
+            row: 0
+          }
+        }),
+      items: [{ title: 'Mark Unavailable' }, { title: 'Change Type' }]
+    }
+  },
 
-	methods: {
-		resolveSeatType(row, col) {
-			if (this.nonSeats.filter(nonSeat => nonSeat.column == col && nonSeat.row == row).length) {
-				return 'non-seat';
-			} else {
-				return 'seat';
-			}
-		}
-	}
-
+  methods: {
+    resolveSeatType(row, col) {
+      if (
+        this.nonSeats.filter(
+          nonSeat => nonSeat.column == col && nonSeat.row == row
+        ).length
+      ) {
+        return 'non-seat'
+      } else {
+        return 'seat'
+      }
+    }
+  }
 }
 </script>

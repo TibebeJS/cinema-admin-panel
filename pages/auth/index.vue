@@ -12,7 +12,6 @@
      <v-tabs
       v-model="tab"
       grow
-      dark
     >
       <v-tab
         v-for="item in ['sign in', 'register']"
@@ -93,6 +92,7 @@
 <script>
 export default {
   layout: 'auth',
+  auth: false,
   data() {
     return {
       signin: {

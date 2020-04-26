@@ -41,8 +41,8 @@
           </v-list-item>
 
           <v-card-actions>
-            <v-btn text @click="routeTo('/cinemas/manage/1')">manage</v-btn>
-            <v-btn text @click="routeTo('/cinemas/schedules/1')">schedules</v-btn>
+            <v-btn text @click="routeTo(`/cinemas/manage/${cinema.id}`)">manage</v-btn>
+            <v-btn text @click="routeTo(`/cinemas/schedules/${cinema.id}`)">schedules</v-btn>
           </v-card-actions>
         </v-card>
       </v-layout>

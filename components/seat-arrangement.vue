@@ -3,7 +3,7 @@
     <ul class="squares" v-for="row of Object.keys(Array(rows).fill(undefined))">
 <v-menu v-for="col of Object.keys(Array(columns).fill(undefined))" :key="`${row}:${col}`">
       <template v-slot:activator="{ on }">
-          <li :class="resolveSeatType(row, col)" v-on="on"></li>
+          <v-icon  v-on="on">mdi-seat</v-icon>
       </template>
       <v-list>
         <v-list-item
@@ -43,7 +43,9 @@
 .venue {
   grid-template-columns: auto 1fr;
   grid-gap: 10px;
-  width: 100%;
+  transform: perspective(1400px) rotateX(20deg);
+  box-sizing: border-box;
+  padding: 50px;
 }
 
 
@@ -65,6 +67,7 @@
 	height: var(--square-size);
 	width: var(--square-size);
 }
+
 
 .seat:hover, .seat-taken:hover {
 	background-color: var(--seat-hover-color) !important;

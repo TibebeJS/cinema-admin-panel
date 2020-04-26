@@ -31,9 +31,10 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: ['~/plugins/fireauth.js'],
-  // router: {
-  //   middleware: 'router-auth'
-  // },
+  
+  router: {
+    middleware: 'router-auth'
+  },
   /*
    ** Nuxt.js dev-modules
    */

@@ -59,7 +59,7 @@
               <v-btn color="primary" text @click="alert" x-small class="pa-0 px-1">
                 Profile
               </v-btn>
-              <v-btn color="primary" text @click="alert" x-small class="pa-0 px-1">
+              <v-btn color="primary" text @click="signOut" x-small class="pa-0 px-1">
                 Sign out
               </v-btn>
             </VListTileSubTitle>
@@ -129,6 +129,9 @@ export default {
   methods: {
     toggleDarkMode() {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+    },
+    signOut() {
+      this.$store.dispatch('signOut').then(() => this.$router.replace({ name: 'auth' }));
     }
   }
 }

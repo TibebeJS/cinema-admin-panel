@@ -1,5 +1,5 @@
 <template>
-  <div class="venue">
+  <div class="venue" style="max-width: 900px;">
     <ul
       class="squares"
       v-for="row of Object.keys(Array(rows).fill(undefined))"
@@ -10,9 +10,12 @@
         :key="`${row}:${col}`"
       >
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on">mdi-seat</v-icon>
+          <v-icon v-on="on" class="seat-icon">mdi-seat</v-icon>
         </template>
         <v-list>
+          <v-list-item>
+            <v-list-item-title>{{col}} x {{row}} ({{ (Number(row) * columns) + Number(col) }}'th seat)</v-list-item-title>
+          </v-list-item>
           <v-list-item v-for="(item, index) in items" :key="index">
             <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item>
@@ -24,15 +27,21 @@
 
 <style>
 :root {
-  --square-size: 0.6%;
-  --square-gap: 0.7%;
+  /* --square-size: 0.6%;
+  --square-gap: 0.7%; */
+  --square-size: 4%;
+  --square-gap: 1%;
   --week-width: calc(var(--square-size) + var(--square-gap));
-  --seat-color: lightcyan;
+  --seat-color: darkorange;
   --non-seat-color: transparent;
   --taken-seat-color: cyan;
   --seat-hover-color: darkcyan;
 }
 
+.seat-icon{
+  /* color: darkorange !important; */
+  font-size: 250% !important;
+}
 .months {
   grid-area: months;
 }
@@ -49,6 +58,7 @@
   transform: perspective(1400px) rotateX(20deg);
   box-sizing: border-box;
   padding: 50px;
+  /* background-color: #AAA; */
 }
 
 .days,
@@ -112,14 +122,14 @@ body {
 export default {
   data() {
     return {
-      rows: 10,
-      columns: 75,
-      nonSeats: Array(30)
+      rows: 11,
+      columns: 19,
+      nonSeats: Array(6)
         .fill(undefined)
         .map((_, i) => {
           return {
-            column: 20 + i,
-            row: 0
+            column: 6 + i,
+            row: 8
           }
         }),
       items: [{ title: 'Mark Unavailable' }, { title: 'Change Type' }]

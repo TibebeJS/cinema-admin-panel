@@ -82,14 +82,15 @@
     <v-card width="100%" class="mt-5">
       <v-card-text>
         <v-layout>
-
-<v-alert type="error" v-if="error" width="100%">
-  <v-layout class="align-center">
-    <strong>ERROR:</strong> {{error.message}}
-    <v-spacer></v-spacer>
-    <v-btn @click="fetchSchedulesFor(picker.slice(0, 10))">Retry</v-btn>
-  </v-layout>
-</v-alert>
+          <v-alert type="error" v-if="error" width="100%">
+            <v-layout class="align-center">
+              <strong>ERROR:</strong> {{ error.message }}
+              <v-spacer></v-spacer>
+              <v-btn @click="fetchSchedulesFor(picker.slice(0, 10))"
+                >Retry</v-btn
+              >
+            </v-layout>
+          </v-alert>
 
           <v-card
             class="mx-auto my-12 px-2"
@@ -161,8 +162,7 @@ export default {
   data() {
     return {
       picker: new Date().toISOString(),
-      schedules: [
-      ],
+      schedules: [],
       items: [
         {
           text: '2D Movies'
@@ -207,19 +207,20 @@ export default {
       this.schedules = []
       this.error = null
       try {
-        const result = await this.$axios.$get(`https://cinema.addis-dev.com/gast-cinema/api/schedules/by-date/${date}`)
+        const result = await this.$axios.$get(
+          `https://cinema.addis-dev.com/gast-cinema/api/schedules/by-date/${date}`
+        )
         this.schedules = result
       } catch (e) {
         this.error = e
       }
-
     }
   },
   mounted() {
     this.fetchSchedulesFor(this.picker.slice(0, 10))
   },
   watch: {
-    picker: function (newVal) {
+    picker: function(newVal) {
       this.fetchSchedulesFor(newVal.slice(0, 10))
     }
   }

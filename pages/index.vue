@@ -70,6 +70,7 @@
                   v-on="on"
                   nuxt
                   to="/tickets"
+                  disabled
                 >
                   <v-icon color="primary" size="150">mdi-ticket</v-icon>
                 </v-btn>

@@ -82,6 +82,11 @@
     <v-card width="100%" class="mt-5">
       <v-card-text>
         <v-layout>
+
+<v-alert type="error" v-if="error" width="100%">
+  <strong>ERROR:</strong> {{error.message}}
+</v-alert>
+
           <v-card
             class="mx-auto my-12 px-2"
             max-width="374"
@@ -164,7 +169,8 @@ export default {
       ],
       loading: false,
       search: '',
-      selected: []
+      selected: [],
+      error: null
     }
   },
   computed: {
@@ -194,8 +200,15 @@ export default {
   },
   methods: {
     async fetchSchedulesFor(date) {
-      const result = await this.$axios.$get(`https://cinema.addis-dev.com/gast-cinema/api/schedules/by-date/${date}`)
-      this.schedules = result
+      this.schedules = []
+      try {
+        const result = await this.$axios.$get(`https://cinema.addis-dev.com/gast-cinema/api/schedules/by-date/${date}`)
+        this.schedules = result
+        this.error = null
+      } catch (e) {
+        this.error = e
+      }
+
     }
   },
   mounted() {

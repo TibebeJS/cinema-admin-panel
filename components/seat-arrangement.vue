@@ -1,7 +1,5 @@
 <template>
   <div class="venue" style="max-width: 1000px;">
-{{nonSeats}}
-
     <ul
       class="squares"
       v-for="row of Object.keys(Array(rows).fill(undefined))"
@@ -38,8 +36,6 @@
 
 <style>
 :root {
-  /* --square-size: 0.6%;
-  --square-gap: 0.7%; */
   --square-size: 4%;
   --square-gap: 1%;
   --week-width: calc(var(--square-size) + var(--square-gap));
@@ -118,6 +114,7 @@ body {
 
 .non-seat {
   background-color: var(--non-seat-color) !important;
+  content: '' !important; 
 }
 
 .non-seat:hover {

@@ -1,5 +1,7 @@
 <template>
   <div class="venue" style="max-width: 1000px;">
+{{nonSeats}}
+
     <ul
       class="squares"
       v-for="row of Object.keys(Array(rows).fill(undefined))"
@@ -15,7 +17,7 @@
         :key="`${row}:${col}`"
       >
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on" class="seat-icon">mdi-seat</v-icon>
+          <v-icon v-on="on" class="seat-icon" :class="resolveSeatType(row, col)">mdi-seat</v-icon>
         </template>
         <v-list>
           <v-list-item>
@@ -111,7 +113,7 @@ body {
 }
 
 .seat {
-  background-color: var(--seat-color) !important;
+  background-color: var(--seat-color);
 }
 
 .non-seat {
@@ -119,11 +121,11 @@ body {
 }
 
 .non-seat:hover {
-  background-color: transparent !important;
+  background-color: transparent;
 }
 
 .seat-taken {
-  background-color: var(--taken-seat-color) !important;
+  background-color: var(--taken-seat-color);
 }
 </style>
 
@@ -139,17 +141,9 @@ export default {
           .map((_, i) => {
             return {
               column: 6 + i,
-              row: 8
+              row: 10
             }
           }),
-        ...Array(this.rows)
-          .fill(undefined)
-          .map((_, i) => {
-            return {
-              column: 0,
-              row: i
-            }
-          })
       ],
       items: [{ title: 'Mark Unavailable' }, { title: 'Change Type' }]
     }

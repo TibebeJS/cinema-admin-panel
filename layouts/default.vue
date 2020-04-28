@@ -37,7 +37,7 @@
               color="accent"
             >
             <img
-              src="https://habeshaflix.com/images/artists/a2.jpg"
+              src="~/assets/images/no-profile-pic.jpg"
               width="55"
             />
             </v-avatar>        
@@ -65,7 +65,7 @@
               color="accent"
             >
             <img
-              src="https://habeshaflix.com/images/artists/a2.jpg"
+              src="~/assets/images/no-profile-pic.jpg"
               width="55"
             />
             </v-avatar>
@@ -73,7 +73,7 @@
 
           <v-list-tile-content>
             <v-list-item-title class="pl-1">
-              Selam Tesfaye
+              [No NAME]
             </v-list-item-title>
             <VListTileSubTitle>
               <v-btn color="primary" text @click="alert" x-small class="pa-0 px-1">

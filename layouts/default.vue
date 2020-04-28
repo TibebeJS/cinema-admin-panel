@@ -31,7 +31,7 @@
  v-slot:default="{ hover }"
  height="100%"
 >
-  <span class="mx-2 px-2"
+  <span class="mx-2 px-2" style="cursor: pointer;"
    @click.stop="rightDrawer = !rightDrawer"  :class="hover ? 'elevation-1' : ''">
     <v-avatar
               color="accent"

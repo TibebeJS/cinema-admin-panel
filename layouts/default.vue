@@ -29,8 +29,10 @@
 
 <v-hover
  v-slot:default="{ hover }"
+ height="100%"
 >
-  <span class="mx-2 px-2" style="border-radius: 50px;" @click.stop="rightDrawer = !rightDrawer"  :class="hover ? 'elevation-2' : ''">
+  <span class="mx-2 px-2"
+   @click.stop="rightDrawer = !rightDrawer"  :class="hover ? 'elevation-1' : ''">
     <v-avatar
               color="accent"
             >

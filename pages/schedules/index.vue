@@ -4,7 +4,7 @@
       <v-card-title class="headline">
         Schedules
         <v-spacer></v-spacer>
-        <nuxt-link to="new" tag="v-btn">
+        <nuxt-link to="schedules/new" tag="v-btn">
           New Schedule
         </nuxt-link>
       </v-card-title>
@@ -96,7 +96,7 @@
             <v-layout class="align-center">
               <strong class="mr-3">:(</strong> No schedule has been found for {{ picker.slice(0,10) }}
               <v-spacer></v-spacer>
-              <v-btn @click="fetchSchedulesFor(picker.slice(0, 10))"
+              <v-btn nuxt :to="`schedules/new`"
                 >
               <v-icon>mdi-plus</v-icon> create
               </v-btn

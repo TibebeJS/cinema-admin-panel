@@ -80,9 +80,8 @@
           <v-spacer />
           <v-btn
             color="primary"
-            nuxt
-            to="/inspire"
             class="ma-2"
+            disabled
           >
           <v-icon class="pa-1">mdi-pencil</v-icon>
             Customize

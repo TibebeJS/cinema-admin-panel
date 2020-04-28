@@ -84,7 +84,11 @@
         <v-layout>
 
 <v-alert type="error" v-if="error" width="100%">
-  <strong>ERROR:</strong> {{error.message}}
+  <v-layout class="align-center">
+    <strong>ERROR:</strong> {{error.message}}
+    <v-spacer></v-spacer>
+    <v-btn @click="fetchSchedulesFor(picker.slice(0, 10))">Retry</v-btn>
+  </v-layout>
 </v-alert>
 
           <v-card
@@ -201,10 +205,10 @@ export default {
   methods: {
     async fetchSchedulesFor(date) {
       this.schedules = []
+      this.error = null
       try {
         const result = await this.$axios.$get(`https://cinema.addis-dev.com/gast-cinema/api/schedules/by-date/${date}`)
         this.schedules = result
-        this.error = null
       } catch (e) {
         this.error = e
       }

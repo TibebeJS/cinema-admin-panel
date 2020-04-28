@@ -20,7 +20,11 @@
     </v-navigation-drawer>
     <v-app-bar clipped-left fixed app>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title>
+        <nuxt-link to='/' tag="v-text" style="cursor: pointer;">
+          {{ title }}
+        </nuxt-link>
+      </v-toolbar-title>
       <v-spacer />
       <v-btn icon @click.stop="rightDrawer = !rightDrawer">
         <v-icon>mdi-dots-vertical</v-icon>

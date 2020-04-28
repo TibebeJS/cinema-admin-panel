@@ -86,6 +86,7 @@
             v-if="loading"
             indeterminate
             color="secondary darken-2"
+            class="my-4"
           ></v-progress-linear>
           <template v-else>
             <v-alert type="error" v-if="error" width="100%">

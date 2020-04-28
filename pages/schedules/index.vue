@@ -91,6 +91,18 @@
               >
             </v-layout>
           </v-alert>
+          
+          <v-alert type="info" v-else-if="schedules.length === 0" width="100%">
+            <v-layout class="align-center">
+              <strong class="mr-3">:(</strong> No schedule has been found for {{ picker.slice(0,10) }}
+              <v-spacer></v-spacer>
+              <v-btn @click="fetchSchedulesFor(picker.slice(0, 10))"
+                >
+              <v-icon>mdi-plus</v-icon> create
+              </v-btn
+              >
+            </v-layout>
+          </v-alert>
 
           <v-card
             class="mx-auto my-12 px-2"

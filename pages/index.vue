@@ -14,6 +14,7 @@
     > 
     <v-card
     min-width="900"
+    class="pa-1"
     >
         <v-card-title class="headline">
           Quick start
@@ -28,7 +29,6 @@
         <nuxt-link to="/schedules" tag="v-col">
           <v-btn
             class="d-flex align-center"
-            dark
             height="200"
             width="100%"
           >
@@ -38,7 +38,6 @@
         <nuxt-link to="/cinemas" tag="v-col">
           <v-btn
             class="d-flex align-center"
-            dark
             height="200"
             width="100%"
           >
@@ -48,7 +47,6 @@
         <nuxt-link to="/tickets" tag="v-col">
           <v-btn
             class="d-flex align-center"
-            dark
             height="200"
             width="100%"
           >

@@ -4,7 +4,9 @@
       <v-card-title class="headline">
         Schedules
         <v-spacer></v-spacer>
-        <v-btn>New Schedule</v-btn>
+        <nuxt-link to="new" tag="v-btn">
+          New Schedule
+        </nuxt-link>
       </v-card-title>
       <v-card-subtitle>
         Mange cinema schedules
@@ -151,141 +153,6 @@ export default {
     return {
       picker: new Date().toISOString(),
       schedules: [
-        {
-          "id": 2,
-          "overview": "A hardened CIA operative finds himself at the mercy of a precocious 9-year-old girl, having been sent undercover to surveil her family.",
-          "poster_path": "/n2C6jRK9PtPIs99RQhKtqGlsnsO.jpg",
-          "release_date": "2020-04-17T00:00:00.000Z",
-          "title": "My Spy",
-          "vote": 7.2,
-          "schedules": [
-            {
-              "id": 14,
-              "date": "2020-04-19",
-              "time": "14:08:00",
-              "CinemaId": 3,
-              "MovieId": 2,
-              "MovieTypeId": 1,
-              "Cinema": {
-                "id": 3,
-                "description": "Gold 1 cinema",
-                "name": "Gold 1",
-                "rows": null,
-                "columns": null
-              },
-              "MovieType": {
-                "id": 1,
-                "description": "",
-                "name": "2D",
-                "title": "2D Movies"
-              }
-            },
-            {
-              "id": 15,
-              "date": "2020-04-19",
-              "time": "14:15:00",
-              "CinemaId": 1,
-              "MovieId": 2,
-              "MovieTypeId": 1,
-              "Cinema": {
-                "id": 1,
-                "description": "Cinema 1 cinema",
-                "name": "Cinema 1",
-                "rows": null,
-                "columns": null
-              },
-              "MovieType": {
-                "id": 1,
-                "description": "",
-                "name": "2D",
-                "title": "2D Movies"
-              }
-            },
-            {
-              "id": 16,
-              "date": "2020-04-19",
-              "time": "14:17:00",
-              "CinemaId": 2,
-              "MovieId": 2,
-              "MovieTypeId": 1,
-              "Cinema": {
-                "id": 2,
-                "description": "Cinema 2 cinema",
-                "name": "Cinema 2",
-                "rows": null,
-                "columns": null
-              },
-              "MovieType": {
-                "id": 1,
-                "description": "",
-                "name": "2D",
-                "title": "2D Movies"
-              }
-            },
-          ]
-        },
-        {
-          "id": 4,
-          "overview": "A sweeping drama set in the chaotic aftermath of the US invasion of Iraq, where the life of top UN diplomat Sergio Vieira de Mello hangs in the balance during the most treacherous mission of his career.",
-          "poster_path": "/jgLlp0jF1EDG8N1rAulAUlv9pL6.jpg",
-          "release_date": "2020-04-17T00:00:00.000Z",
-          "title": "Sergio",
-          "vote": 7.3,
-          "schedules": [
-            {
-              "id": 26,
-              "date": "2020-04-19",
-              "time": "16:09:00",
-              "CinemaId": 2,
-              "MovieId": 4,
-              "MovieTypeId": 2,
-              "Cinema": {
-                "id": 2,
-                "description": "Cinema 2 cinema",
-                "name": "Cinema 2",
-                "rows": null,
-                "columns": null
-              },
-              "MovieType": {
-                "id": 2,
-                "description": "",
-                "name": "3D",
-                "title": "3D Movies"
-              }
-            }
-          ]
-        },
-        {
-          "id": 1,
-          "overview": "After he and his wife are murdered, marine Ray Garrison is resurrected by a team of scientists. Enhanced with nanotechnology, he becomes a superhuman, biotech killing machine—'Bloodshot'. As Ray first trains with fellow super-soldiers, he cannot recall anything from his former life. But when his memories flood back and he remembers the man that killed both him and his wife, he breaks out of the facility to get revenge, only to discover that there's more to the conspiracy than he thought.",
-          "poster_path": "/8WUVHemHFH2ZIP6NWkwlHWsyrEL.jpg",
-          "release_date": "2020-03-13T00:00:00.000Z",
-          "title": "Bloodshot",
-          "vote": 7.2,
-          "schedules": [
-            {
-              "id": 29,
-              "date": "2020-04-20",
-              "time": "21:04:00",
-              "CinemaId": 2,
-              "MovieId": 1,
-              "MovieTypeId": 2,
-              "Cinema": {
-                "id": 2,
-                "description": "Cinema 2 cinema",
-                "name": "Cinema 2",
-                "rows": null,
-                "columns": null
-              },
-              "MovieType": {
-                "id": 2,
-                "description": "",
-                "name": "3D",
-                "title": "3D Movies"
-              }
-            }
-          ]
-        },        
       ],
       items: [
         {
@@ -323,6 +190,20 @@ export default {
       }
 
       return selections
+    }
+  },
+  methods: {
+    async fetchSchedulesFor(date) {
+      const result = await this.$axios.$get(`https://cinema.addis-dev.com/gast-cinema/api/schedules/by-date/${date}`)
+      this.schedules = result
+    }
+  },
+  mounted() {
+    this.fetchSchedulesFor(this.picker.slice(0, 10))
+  },
+  watch: {
+    picker: function (newVal) {
+      this.fetchSchedulesFor(newVal.slice(0, 10))
     }
   }
 }

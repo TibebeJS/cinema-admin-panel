@@ -3,61 +3,61 @@
     column
     justify-center
     align-center
+    class="mt-5"
   >
     <v-flex
       xs12
       sm8
       md6
-    >      <v-card>
+    class="mt-5"
+
+    > 
+    <v-card
+    min-width="900"
+    >
         <v-card-title class="headline">
-          Welcome to the Vuetify + Nuxt.js template
+          Quick start
         </v-card-title>
         <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>
-            For more information on Vuetify, check out the <a
-              href="https://vuetifyjs.com"
-              target="_blank"
-            >
-              documentation
-            </a>.
-          </p>
-          <p>
-            If you have questions, please join the official <a
-              href="https://chat.vuetifyjs.com/"
-              target="_blank"
-              title="chat"
-            >
-              discord
-            </a>.
-          </p>
-          <p>
-            Find a bug? Report it on the github <a
-              href="https://github.com/vuetifyjs/vuetify/issues"
-              target="_blank"
-              title="contribute"
-            >
-              issue board
-            </a>.
-          </p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a
-            href="https://nuxtjs.org/"
-            target="_blank"
+          <p>Use the following buttons to get accesss to the mostly used resources</p>
+
+    <v-container>
+      <v-row>
+    
+
+        <nuxt-link to="/schedules" tag="v-col">
+          <v-btn
+            class="d-flex align-center"
+            dark
+            height="200"
+            width="100%"
           >
-            Nuxt Documentation
-          </a>
-          <br>
-          <a
-            href="https://github.com/nuxt/nuxt.js"
-            target="_blank"
+            <v-icon color="primary" size="150">mdi-calendar</v-icon>
+          </v-btn>
+        </nuxt-link>
+        <nuxt-link to="/cinemas" tag="v-col">
+          <v-btn
+            class="d-flex align-center"
+            dark
+            height="200"
+            width="100%"
           >
-            Nuxt GitHub
-          </a>
+            <v-icon color="primary" size="150">mdi-film</v-icon>
+          </v-btn>
+        </nuxt-link>
+        <nuxt-link to="/tickets" tag="v-col">
+          <v-btn
+            class="d-flex align-center"
+            dark
+            height="200"
+            width="100%"
+          >
+            <v-icon color="primary" size="150">mdi-ticket</v-icon>
+          </v-btn>
+        </nuxt-link>
+      </v-row>
+    </v-container>
+ 
         </v-card-text>
         <v-card-actions>
           <v-spacer />
@@ -65,8 +65,10 @@
             color="primary"
             nuxt
             to="/inspire"
+            class="ma-2"
           >
-            Continue
+          <v-icon class="pa-1">mdi-pencil</v-icon>
+            Customize
           </v-btn>
         </v-card-actions>
       </v-card>

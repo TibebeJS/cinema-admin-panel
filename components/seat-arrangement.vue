@@ -5,9 +5,11 @@
       v-for="row of Object.keys(Array(rows).fill(undefined))"
       :key="row"
     >
-    <span>
-    <v-icon style="font-size: 36px; color:gray;" class="pa-0 mr-3">mdi-format-align-justify</v-icon>
-    </span>
+      <span>
+        <v-icon style="font-size: 36px; color:gray;" class="pa-0 mr-3"
+          >mdi-format-align-justify</v-icon
+        >
+      </span>
       <v-menu
         v-for="col of Object.keys(Array(columns).fill(undefined))"
         :key="`${row}:${col}`"
@@ -17,7 +19,11 @@
         </template>
         <v-list>
           <v-list-item>
-            <v-list-item-title>{{col}} x {{row}} ({{ (Number(row) * columns) + Number(col) }}'th seat)</v-list-item-title>
+            <v-list-item-title
+              >{{ col }} x {{ row }} ({{
+                Number(row) * columns + Number(col)
+              }}'th seat)</v-list-item-title
+            >
           </v-list-item>
           <v-list-item v-for="(item, index) in items" :key="index">
             <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -41,7 +47,7 @@
   --seat-hover-color: darkcyan;
 }
 
-.seat-icon{
+.seat-icon {
   /* color: darkorange !important; */
   font-size: 250% !important;
 }
@@ -129,21 +135,21 @@ export default {
       columns: 18,
       nonSeats: [
         ...Array(6)
-        .fill(undefined)
-        .map((_, i) => {
-          return {
-            column: 6 + i,
-            row: 8
-          }
-        }),
-         ...Array(this.rows)
-        .fill(undefined)
-        .map((_, i) => {
-          return {
-            column: 0,
-            row: i
-          }
-        }),
+          .fill(undefined)
+          .map((_, i) => {
+            return {
+              column: 6 + i,
+              row: 8
+            }
+          }),
+        ...Array(this.rows)
+          .fill(undefined)
+          .map((_, i) => {
+            return {
+              column: 0,
+              row: i
+            }
+          })
       ],
       items: [{ title: 'Mark Unavailable' }, { title: 'Change Type' }]
     }

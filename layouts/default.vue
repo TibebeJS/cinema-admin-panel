@@ -2,12 +2,7 @@
   <v-app dark>
     <v-navigation-drawer :mini-variant="drawer" clipped fixed app>
       <v-list>
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="i"
-          :to="item.to"
-          router
-        >
+        <v-list-item v-for="(item, i) in items" :key="i" :to="item.to" router>
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>

@@ -108,7 +108,12 @@
                 <strong class="mr-3">:(</strong> No schedule has been found for
                 {{ picker.slice(0, 10) }}
                 <v-spacer></v-spacer>
-                <v-btn nuxt :to="`schedules/create-new/by-date?date=${picker.slice(0, 10)}`">
+                <v-btn
+                  nuxt
+                  :to="
+                    `schedules/create-new/by-date?date=${picker.slice(0, 10)}`
+                  "
+                >
                   <v-icon>mdi-plus</v-icon> create
                 </v-btn>
               </v-layout>

@@ -9,15 +9,7 @@
       </v-container>
     </v-content>
     <v-fab-transition>
-      <v-btn
-      fixed
-        fab
-        large
-        dark
-        bottom
-        right
-        @click="toggleDarkMode"
-      >
+      <v-btn fixed fab large dark bottom right @click="toggleDarkMode">
         <v-icon>mdi-brightness-6</v-icon>
       </v-btn>
     </v-fab-transition>

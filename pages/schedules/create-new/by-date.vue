@@ -1,4 +1,3 @@
-
 <template>
   <v-container>
     <v-card width="100%">
@@ -82,36 +81,23 @@
 
     <v-card width="100%" class="mt-5">
       <v-card-text>
-        <v-layout>
-           
-        </v-layout>
+        <v-layout> </v-layout>
       </v-card-text>
     </v-card>
   </v-container>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
 
 <script>
 export default {
-  
-
   data: () => ({
-    picker: new Date().toISOString(),
+    picker: new Date().toISOString()
   }),
 
-  computed: {
+  computed: {},
 
-  },
-
-  created() {
- 
-  },
-  methods: {
- 
-  },
-
+  created() {},
+  methods: {}
 }
 </script>

@@ -1,6 +1,10 @@
 # gast-admin-panel
 
-> GAST Cinema&#39;s Admin Panel
+> GAST Cinema&#39;s Admin Panel.
+It helps manage the overall system and the content on the mobile apps (schedules, movies, tickets, ...). Authentication as an admin is required to access this system.
+
+
+Developed by: [Tibebeselasie Mehari](github.com/TibebeJS)
 
 ## Build Setup
 

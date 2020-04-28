@@ -98,16 +98,19 @@
                 >
               </v-layout>
             </v-alert>
-        
-            <v-alert type="info" v-else-if="schedules.length === 0" width="100%">
+
+            <v-alert
+              type="info"
+              v-else-if="schedules.length === 0"
+              width="100%"
+            >
               <v-layout class="align-center">
-                <strong class="mr-3">:(</strong> No schedule has been found for {{ picker.slice(0,10) }}
+                <strong class="mr-3">:(</strong> No schedule has been found for
+                {{ picker.slice(0, 10) }}
                 <v-spacer></v-spacer>
-                <v-btn nuxt :to="`schedules/new`"
-                  >
-                <v-icon>mdi-plus</v-icon> create
-                </v-btn
-                >
+                <v-btn nuxt :to="`schedules/new`">
+                  <v-icon>mdi-plus</v-icon> create
+                </v-btn>
               </v-layout>
             </v-alert>
 
@@ -166,7 +169,6 @@
                 </v-btn>
               </v-card-actions>
             </v-card>
-
           </template>
         </v-layout>
       </v-card-text>
@@ -236,7 +238,7 @@ export default {
       } catch (e) {
         this.error = e
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     }
   },

@@ -24,7 +24,7 @@
 
     <v-container>
       <v-row>
-        <nuxt-link to="/schedules" tag="v-col">
+        <v-col>
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
                 <v-btn
@@ -32,6 +32,8 @@
                   height="200"
                   width="100%"
                   v-on="on"
+                  nuxt
+                  to="/schedules"
                 >
                   <v-icon color="primary" size="150">mdi-calendar</v-icon>
                 </v-btn>
@@ -39,8 +41,8 @@
             </template>
             <span>Manage Schedules</span>
           </v-tooltip>
-        </nuxt-link>
-        <nuxt-link to="/cinemas" tag="v-col">
+        </v-col>
+        <v-col>
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
                 <v-btn
@@ -48,6 +50,8 @@
                   height="200"
                   width="100%"
                   v-on="on"
+                  nuxt
+                  to="/cinemas"
                 >
                   <v-icon color="primary" size="150">mdi-film</v-icon>
                 </v-btn>
@@ -55,8 +59,8 @@
             </template>
             <span>Manage Cinemas</span>
           </v-tooltip>
-        </nuxt-link>
-        <nuxt-link to="/tickets" tag="v-col">
+        </v-col>
+        <v-col>
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
                 <v-btn
@@ -64,6 +68,8 @@
                   height="200"
                   width="100%"
                   v-on="on"
+                  nuxt
+                  to="/tickets"
                 >
                   <v-icon color="primary" size="150">mdi-ticket</v-icon>
                 </v-btn>
@@ -71,7 +77,7 @@
             </template>
             <span>Manage Tickets</span>
           </v-tooltip>
-        </nuxt-link>
+        </v-col>
       </v-row>
     </v-container>
  

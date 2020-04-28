@@ -73,12 +73,12 @@
         <v-divider></v-divider>
 
         <v-list-item>
-          <v-btn-toggle v-model="text" tile color="accent-3" group>
-            <v-btn value="left">
+          <v-btn-toggle v-model="languageSelected" tile color="accent-3" group>
+            <v-btn value="english">
               English
             </v-btn>
 
-            <v-btn value="center">
+            <v-btn value="amharic">
               አማርኛ
             </v-btn>
           </v-btn-toggle>
@@ -109,6 +109,7 @@ export default {
   data() {
     return {
       drawer: false,
+      languageSelected: 'english',
       items: [
         {
           icon: 'mdi-apps',

@@ -26,9 +26,23 @@
         </nuxt-link>
       </v-toolbar-title>
       <v-spacer />
-      <v-btn icon @click.stop="rightDrawer = !rightDrawer">
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+
+<v-hover
+ v-slot:default="{ hover }"
+>
+  <span class="mx-2 px-2" style="border-radius: 50px;" @click.stop="rightDrawer = !rightDrawer"  :class="hover ? 'elevation-2' : ''">
+    <v-avatar
+              color="accent"
+            >
+            <img
+              src="https://habeshaflix.com/images/artists/a2.jpg"
+              width="55"
+            />
+            </v-avatar>        
+        <v-icon class="px-2">mdi-chevron-down</v-icon>
+  </span>
+</v-hover>
+
     </v-app-bar>
     <v-content>
       <v-container>

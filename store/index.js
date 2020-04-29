@@ -21,6 +21,10 @@ const createStore = () => {
         commit('setUser', payload)
       },
 
+      async getToken() {
+        return await auth.currentUser.getIdToken()
+      },
+
       signInWithGoogle ({commit}) {
         return new Promise((resolve, reject) => {
           auth.signInWithRedirect(GoogleProvider)

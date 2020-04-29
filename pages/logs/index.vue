@@ -88,9 +88,9 @@
       nonce: 2,
     }),
 
-    beforeDestroy () {
-      this.stop()
-    },
+    // beforeDestroy () {
+    //   this.stop()
+    // },
 
     methods: {
       async fetchLogs() {
@@ -99,7 +99,7 @@
         this.error = null
         try {
           const result = await this.$axios.$get(
-            `https://cinema.addis-dev.com/gast-cinema/api/logs/all`
+            `https://cinema.addis-dev.com/gast-cinema/api/logs/all`,
           )
           this.logs = result
         } catch (e) {

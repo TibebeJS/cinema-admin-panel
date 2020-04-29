@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mx-4 py-0">
     <v-row
       class="mb-6"
       no-gutters

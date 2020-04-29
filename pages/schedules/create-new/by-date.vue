@@ -2,11 +2,11 @@
   <v-container>
     <v-card width="100%">
       <v-card-title class="headline">
-        New schedule
+        Add schedules for date
         <v-spacer></v-spacer>
-        <!-- <nuxt-link to="schedules/new" tag="v-btn">
-          New Schedule
-        </nuxt-link> -->
+        <nuxt-link to="schedules/new" tag="v-btn">
+          Schedule by movie
+        </nuxt-link>
       </v-card-title>
       <v-card-subtitle>
         Create a new schedule for a movie
@@ -16,7 +16,7 @@
           <v-expansion-panel>
             <v-expansion-panel-header>
               <v-row class="align-start align-baseline">
-                <v-icon>mdi-filter</v-icon> Filters :
+                <v-icon>mdi-calendar</v-icon> Date :
                 <span class="secondary--text">{{ picker.slice(0, 10) }}</span>
 
                 <v-col
@@ -52,26 +52,7 @@
                     reactive
                   ></v-date-picker>
                 </v-col>
-                <v-col>
-                  <v-list>
-                    <span class="subtitle-1">
-                      Movie Filters:
-                    </span>
-                    <template v-for="(item, i) in categories">
-                      <v-list-item
-                        :class="{ 'active-filter': selected.includes(i) }"
-                        class="my-2"
-                        :key="i"
-                        :disabled="selected.includes(i)"
-                        @click="selected.push(i)"
-                      >
-                        <v-list-item-title
-                          v-text="item.text"
-                        ></v-list-item-title>
-                      </v-list-item>
-                    </template>
-                  </v-list>
-                </v-col>
+               
               </v-row>
             </v-expansion-panel-content>
           </v-expansion-panel>

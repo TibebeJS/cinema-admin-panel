@@ -15,7 +15,8 @@
         :key="`${row}:${col}`"
       >
         <template v-slot:activator="{ on }">
-          <v-icon v-on="on" class="seat-icon" :class="resolveSeatType(row, col)">mdi-seat</v-icon>
+          <v-icon v-if="resolveSeatType(row, col) === 'seat'" v-on="on" class="seat-icon seat">mdi-seat</v-icon>
+          <span v-else></span>
         </template>
         <v-list>
           <v-list-item>
@@ -114,7 +115,6 @@ body {
 
 .non-seat {
   background-color: var(--non-seat-color) !important;
-  content: '' !important; 
 }
 
 .non-seat:hover {

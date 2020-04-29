@@ -62,7 +62,41 @@
     <v-card width="100%" class="mt-5">
       <v-card-text>
         <v-row>
-          <v-col cols="8"> </v-col>
+          <v-col cols="8">
+            <v-stepper v-model="newScheduleStepper" vertical>
+              <v-stepper-step :complete="newScheduleStepper > 1" step="1">
+                Select a movie
+                <small>Choose the movie to be scheduled.</small>
+              </v-stepper-step>
+
+              <v-stepper-content step="1">
+                <v-card
+                  color="grey lighten-1"
+                  class="mb-12"
+                  height="200px"
+                ></v-card>
+                <v-btn color="primary" @click="newScheduleStepper = 2"
+                  >Proceed</v-btn
+                >
+              </v-stepper-content>
+
+              <v-stepper-step :complete="newScheduleStepper > 2" step="2">
+                Select venue &amp; time
+              </v-stepper-step>
+
+              <v-stepper-content step="2">
+                <v-card
+                  color="grey lighten-1"
+                  class="mb-12"
+                  height="200px"
+                ></v-card>
+                <v-btn color="primary" @click="newScheduleStepper = 2"
+                  >Add more</v-btn
+                >
+                <v-btn text>Done &amp; Publish</v-btn>
+              </v-stepper-content>
+            </v-stepper>
+          </v-col>
           <v-col cols="4">
             <v-card class="elevation-0" outlined>
               <v-card-title>
@@ -86,7 +120,7 @@
       </v-card-text>
       <v-divider class="mx-5"></v-divider>
       <v-card-actions>
-        <v-btn block text>
+        <v-btn block text disabled>
           add more
         </v-btn>
       </v-card-actions>
@@ -99,7 +133,11 @@
 <script>
 export default {
   data: () => ({
-    picker: new Date().toISOString()
+    picker: new Date().toISOString(),
+    newScheduleStepper: 1,
+    newSchedule: {
+      schedules: []
+    }
   }),
 
   computed: {},

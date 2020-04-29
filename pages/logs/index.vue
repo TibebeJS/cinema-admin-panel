@@ -38,30 +38,41 @@
         <v-card-text class="py-0">
           <v-progress-linear v-if="loading" class="my-4" indeterminate color="secondary darken-2">
           </v-progress-linear>
-          <v-timeline dense v-else>
-              <v-slide-x-reverse-transition
-              group
-              hide-on-leave
-              >
-              <v-timeline-item
-                  v-for="log in logs"
-                  :key="`${log.time}-${log.pid}`"
-                  :color="log.err ? 'error': 'info'"
-                  small
-                  fill-dot
-              >
-                  <v-alert
-                  :value="true"
-                  :color="log.err ? 'error': 'info'"
-                  :icon="log.err ? 'mdi-information': 'mdi-alert-circle'"
-                  class="white--text"
-                  >
-                    {{ log.msg }}
-                  </v-alert>
-              </v-timeline-item>
-              </v-slide-x-reverse-transition>
+          <v-container v-else>
+            <v-alert type="error" v-if="error" width="100%">
+              <v-layout class="align-center">
+                <strong class="mr-2">ERROR:</strong> {{ error.message }}
+                <v-spacer></v-spacer>
+                <v-btn @click="fetchLogs"
+                  >Retry</v-btn
+                >
+              </v-layout>
+            </v-alert>
+            <v-timeline dense v-else>
+            <v-slide-x-reverse-transition
+            group
+            hide-on-leave
+            >
+            <v-timeline-item
+                v-for="log in logs"
+                :key="`${log.time}-${log.pid}`"
+                :color="log.err ? 'error': 'info'"
+                small
+                fill-dot
+            >
+                <v-alert
+                :value="true"
+                :color="log.err ? 'error': 'info'"
+                :icon="log.err ? 'mdi-information': 'mdi-alert-circle'"
+                class="white--text"
+                >
+                  {{ log.msg }}
+                </v-alert>
+            </v-timeline-item>
+            </v-slide-x-reverse-transition>
           </v-timeline>
-        </v-card-text>
+        </v-container>
+      </v-card-text>
     </v-card>
   </v-container>
 </template>

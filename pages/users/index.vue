@@ -27,7 +27,7 @@
               Create new user
             </v-btn>
           </template>
-          <v-card>
+          <v-card class="pa-2">
             <v-card-title>
               <span class="headline">Create a new user</span>
             </v-card-title>
@@ -41,20 +41,23 @@
                     <v-text-field
                       v-model="newUser.displayName"
                       label="Full Name"
-                    ></v-text-field>
-                  </v-col>
-                  <v-col>
-                    <v-text-field
-                      v-model="newUser.email"
-                      label="Email Address"
+                      placeholder="admin's first name + last name"
                     ></v-text-field>
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="12" sm="6" md="4">
+                  <v-col>
+                    <v-text-field
+                      v-model="newUser.email"
+                      label="Email Address"
+                      placeholder="type admin's email address here"
+                    ></v-text-field>
+                  </v-col>
+                  <v-col cols="4" class="ml-4">
                     <v-text-field
                       v-model="newUser.phoneNumber"
                       label="Phone Number"
+                      placeholder="9XX - XXX - XXX"
                     >
                       <template slot="prepend">
                         +251
@@ -76,8 +79,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" text @click="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" text @click="save">Save</v-btn>
+              <v-btn text @click="close">Cancel</v-btn>
+              <v-btn text @click="save">Register</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>

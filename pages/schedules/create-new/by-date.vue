@@ -63,7 +63,25 @@
       <v-card-text>
         <v-row>
           <v-col cols="8"> </v-col>
-          <v-col cols="4"> </v-col>
+          <v-col cols="4">
+            <v-card class="elevation-0" outlined>
+              <v-card-title>
+                Preview
+              </v-card-title>
+              <v-card-media>
+                <v-img
+                  class="white--text align-end"
+                  height="200px"
+                  src="https://i.pinimg.com/originals/96/a0/0d/96a00d42b0ff8f80b7cdf2926a211e47.jpg"
+                >
+                  <v-card-title>Movie Name</v-card-title>
+                </v-img>
+              </v-card-media>
+              <v-card-text>
+                ...
+              </v-card-text>
+            </v-card>
+          </v-col>
         </v-row>
       </v-card-text>
       <v-divider class="mx-5"></v-divider>

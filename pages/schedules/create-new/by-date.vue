@@ -52,7 +52,6 @@
                     reactive
                   ></v-date-picker>
                 </v-col>
-               
               </v-row>
             </v-expansion-panel-content>
           </v-expansion-panel>
@@ -77,6 +76,18 @@ export default {
   }),
 
   computed: {},
+
+  watchQuery: ['date'],
+
+  mounted() {
+    this.picker = this.$route.query.date
+  },
+
+  watch: {
+    picker: function(val) {
+      this.$router.push(`?date=${val.slice(0, 10)}`)
+    }
+  },
 
   created() {},
   methods: {}

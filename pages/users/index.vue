@@ -68,7 +68,7 @@
         </v-card>
       </v-dialog>
     </v-card-title>
-      <v-card-text class="py-0">
+    <v-card-text class="py-0">
         <v-data-table
           :headers="headers"
           :items="users"
@@ -113,11 +113,12 @@
           sortable: false,
           value: 'uid',
         },
-        { text: 'email', value: 'email' },
+        { text: 'Email Address', value: 'email' },
         { text: 'Email Verified', value: 'emailVerified' },
         { text: 'Disabled', value: 'disabled' },
         { text: 'Last Signed In', value: 'metadata.lastSignInTime' },
-        { text: 'Created At', value: 'metadata.creationTime', sortable: false },
+        { text: 'Created At', value: 'metadata.creationTime' },
+        { text: 'Actions', value: 'actions', sortable: false },
       ],
       desserts: [],
       editedIndex: -1,

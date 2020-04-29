@@ -36,73 +36,44 @@
         </v-btn>
         </v-card-title>
         <v-card-text class="py-0">
-        <v-timeline dense>
-            <v-slide-x-reverse-transition
-            group
-            hide-on-leave
-            >
-            <v-timeline-item
-                v-for="item in items"
-                :key="item.id"
-                :color="item.color"
-                small
-                fill-dot
-            >
-                <v-alert
-                :value="true"
-                :color="item.color"
-                :icon="item.icon"
-                class="white--text"
-                >
-                Lorem ipsum dolor sit amet, no nam oblique veritus. Commune scaevola imperdiet nec ut, sed euismod convenire principes at. Est et nobis iisque percipit, an vim zril disputando voluptatibus, vix an salutandi sententiae.
-                </v-alert>
-            </v-timeline-item>
-            </v-slide-x-reverse-transition>
-        </v-timeline>
+          <v-progress-linear v-if="loading" class="my-4" indeterminate color="secondary darken-2">
+          </v-progress-linear>
+          <v-timeline dense v-else>
+              <v-slide-x-reverse-transition
+              group
+              hide-on-leave
+              >
+              <v-timeline-item
+                  v-for="log in logs"
+                  :key="`${log.time}-${log.pid}`"
+                  :color="log.err ? 'error': 'info'"
+                  small
+                  fill-dot
+              >
+                  <v-alert
+                  :value="true"
+                  :color="log.err ? 'error': 'info'"
+                  :icon="log.err ? 'mdi-information': 'mdi-alert-circle'"
+                  class="white--text"
+                  >
+                    {{ log.msg }}
+                  </v-alert>
+              </v-timeline-item>
+              </v-slide-x-reverse-transition>
+          </v-timeline>
         </v-card-text>
     </v-card>
   </v-container>
 </template>
 
 <script>
-const COLORS = [
-    'info',
-    'warning',
-    'error',
-    'success',
-  ]
-  const ICONS = {
-    info: 'mdi-information',
-    warning: 'mdi-alert',
-    error: 'mdi-alert-circle',
-    success: 'mdi-check-circle',
-  }
 
   export default {
     data: () => ({
       interval: null,
-      items: [
-        {
-          id: 1,
-          color: 'info',
-          icon: ICONS['info'],
-        },
-        {
-          id: 2,
-          color: 'warning',
-          icon: ICONS['warning'],
-        },
-        {
-          id: 3,
-          color: 'info',
-          icon: ICONS['info'],
-        },
-        {
-          id: 4,
-          color: 'error',
-          icon: ICONS['error'],
-        },
-      ],
+      loading: false,
+      logs: [],
+      error: null,
       nonce: 2,
     }),
 
@@ -111,46 +82,64 @@ const COLORS = [
     },
 
     methods: {
-      addEvent () {
-        let { color, icon } = this.genAlert()
-
-        const previousColor = this.items[0].color
-
-        while (previousColor === color) {
-          color = this.genColor()
-        }
-
-        this.items.unshift({
-          id: this.nonce++,
-          color,
-          icon,
-        })
-
-        if (this.nonce > 6) {
-          this.items.pop()
+      async fetchLogs() {
+        this.loading = true
+        this.logs = []
+        this.error = null
+        try {
+          const result = await this.$axios.$get(
+            `https://cinema.addis-dev.com/gast-cinema/api/logs/all`
+          )
+          this.logs = result
+        } catch (e) {
+          this.error = e
+        } finally {
+          this.loading = false
         }
       },
-      genAlert () {
-        const color = this.genColor()
+      // addEvent () {
+      //   let { color, icon } = this.genAlert()
 
-        return {
-          color,
-          icon: this.genIcon(color),
-        }
-      },
-      genColor () {
-        return COLORS[Math.floor(Math.random() * 3)]
-      },
-      genIcon (color) {
-        return ICONS[color]
-      },
-      start () {
-        this.interval = setInterval(this.addEvent, 3000)
-      },
-      stop () {
-        clearInterval(this.interval)
-        this.interval = null
-      },
+      //   const previousColor = this.items[0].color
+
+      //   while (previousColor === color) {
+      //     color = this.genColor()
+      //   }
+
+      //   this.items.unshift({
+      //     id: this.nonce++,
+      //     color,
+      //     icon,
+      //   })
+
+      //   if (this.nonce > 6) {
+      //     this.items.pop()
+      //   }
+      // },
+      // genAlert () {
+      //   const color = this.genColor()
+
+      //   return {
+      //     color,
+      //     icon: this.genIcon(color),
+      //   }
+      // },
+      // genColor () {
+      //   return COLORS[Math.floor(Math.random() * 3)]
+      // },
+      // genIcon (color) {
+      //   return ICONS[color]
+      // },
+      // start () {
+      //   this.interval = setInterval(this.addEvent, 3000)
+      // },
+      // stop () {
+      //   clearInterval(this.interval)
+      //   this.interval = null
+      // },
     },
+    mounted() {
+      this.fetchLogs();
+    }
   }
 </script>

@@ -35,6 +35,17 @@
             Realtime Logging
         </v-btn>
         </v-card-title>
+        
+        <v-sheet elevation="10" class="px-4 py-1">
+          <v-chip-group
+            multiple
+            active-class="primary--text"
+          >
+            <v-chip v-for="filter in filters" :key="filter">
+              {{ filter }}
+            </v-chip>
+          </v-chip-group>
+        </v-sheet>
         <v-card-text class="py-0">
           <v-progress-linear v-if="loading" class="my-4" indeterminate color="secondary darken-2">
           </v-progress-linear>
@@ -86,6 +97,16 @@
       logs: [],
       error: null,
       nonce: 2,
+      filters: [
+        'Requests',
+        'Response',
+        'System Info',
+        'Errors',
+        'Console.log',
+        'Transactions',
+        'Admin Actions',
+        'Suspicious'
+      ],
     }),
 
     // beforeDestroy () {

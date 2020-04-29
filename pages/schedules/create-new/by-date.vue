@@ -61,8 +61,17 @@
 
     <v-card width="100%" class="mt-5">
       <v-card-text>
-        <v-layout> </v-layout>
+        <v-row>
+          <v-col cols="8"> </v-col>
+          <v-col cols="4"> </v-col>
+        </v-row>
       </v-card-text>
+      <v-divider class="mx-5"></v-divider>
+      <v-card-actions>
+        <v-btn block text>
+          add more
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-container>
 </template>

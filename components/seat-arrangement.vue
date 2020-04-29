@@ -16,7 +16,7 @@
       >
         <template v-slot:activator="{ on }">
           <v-icon v-if="resolveSeatType(row, col) === 'seat'" v-on="on" class="seat-icon seat">mdi-seat</v-icon>
-          <span v-else></span>
+          <v-icon v-else class="non-seat">mdi-drag-horizontal-variant</v-icon>
         </template>
         <v-list>
           <v-list-item>
@@ -32,6 +32,9 @@
         </v-list>
       </v-menu>
     </ul>
+    <v-row>
+     FRONT-SIDE
+    </v-row>
   </div>
 </template>
 
@@ -115,6 +118,7 @@ body {
 
 .non-seat {
   background-color: var(--non-seat-color) !important;
+  color: grey !important;
 }
 
 .non-seat:hover {

@@ -139,6 +139,11 @@ export default {
           icon: 'mdi-film',
           title: 'Cinemas',
           to: '/cinemas'
+        },
+        {
+          icon: 'mdi-server-security',
+          title: 'Server Logs',
+          to: '/logs'
         }
       ],
       rightDrawer: false,

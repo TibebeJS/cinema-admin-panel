@@ -144,6 +144,11 @@ export default {
           icon: 'mdi-server-security',
           title: 'Server Logs',
           to: '/logs'
+        },
+        {
+          icon: 'mdi-shield-account',
+          title: 'Users',
+          to: '/users'
         }
       ],
       rightDrawer: false,

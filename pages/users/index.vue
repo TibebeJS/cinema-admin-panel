@@ -78,6 +78,13 @@
         </v-dialog>
       </v-card-title>
       <v-card-text class="py-0">
+        <v-alert type="error" v-if="error" width="100%">
+          <v-layout class="align-center">
+            <strong class="mr-2">ERROR:</strong> {{ error.message }}
+            <v-spacer></v-spacer>
+            <v-btn @click="fetchUsers">Retry</v-btn>
+          </v-layout>
+        </v-alert>
         <v-data-table
           :headers="headers"
           :items="users"
@@ -100,7 +107,7 @@
             </v-icon>
           </template>
           <template v-slot:no-data>
-            <v-btn color="primary" @click="initialize">Reset</v-btn>
+            No Users Found
           </template>
         </v-data-table>
       </v-card-text>

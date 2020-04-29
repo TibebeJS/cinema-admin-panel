@@ -1,10 +1,11 @@
 const { auth } = require('../services/fireinit.js')
 
 export default function ({ $axios, redirect }) {
-  $axios.onError(error => {
+  $axios.onError(async error => {
     if(error.response.status === 401) {
       $axios.setToken(auth.currentUser.getIdToken(), 'Bearer')
-      redirect('#')
+
+      return $axios(error.config);
     }
   })
 }

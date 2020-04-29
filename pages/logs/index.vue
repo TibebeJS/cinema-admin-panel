@@ -61,14 +61,12 @@
                 small
                 fill-dot
               >
-                <v-alert
-                  :value="true"
-                  :color="log.err ? 'error' : 'info'"
-                  :icon="log.err ? 'mdi-information' : 'mdi-alert-circle'"
-                  class="white--text"
-                >
-                  {{ log.msg }}
-                </v-alert>
+                <v-row justify="space-between">
+                  <v-col cols="7" v-text="log.msg"></v-col>
+                  <v-col class="text-right" cols="5">
+                    {{ new Date(log.time).toUTCString() }}
+                  </v-col>
+                </v-row>
               </v-timeline-item>
             </v-slide-x-reverse-transition>
           </v-timeline>

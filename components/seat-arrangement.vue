@@ -1,41 +1,72 @@
 <template>
-  <div class="venue" style="max-width: 1000px;">
-    <ul
-      class="squares"
-      v-for="row of Object.keys(Array(rows).fill(undefined))"
-      :key="row"
+  <v-container>
+    <v-row
+      class="mb-6"
+      no-gutters
     >
-      <span>
-        <v-icon style="font-size: 36px; color:gray;" class="pa-0 mr-3"
-          >mdi-format-align-justify</v-icon
-        >
-      </span>
-      <v-menu
-        v-for="col of Object.keys(Array(columns).fill(undefined))"
-        :key="`${row}:${col}`"
+      <v-col
+        cols="8"
       >
-        <template v-slot:activator="{ on }">
-          <v-icon v-if="resolveSeatType(row, col) === 'seat'" v-on="on" class="seat-icon seat">mdi-seat</v-icon>
-          <v-icon v-else class="non-seat">mdi-texture</v-icon>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-list-item-title
-              >{{ col }} x {{ row }} ({{
-                Number(row) * columns + Number(col)
-              }}'th seat)</v-list-item-title
+        <div class="venue" style="max-width: 1000px;">
+          <ul
+            class="squares"
+            v-for="row of Object.keys(Array(rows).fill(undefined))"
+            :key="row"
+          >
+            <span>
+              <v-icon style="font-size: 36px; color:gray;" class="pa-0 mr-3"
+                >mdi-format-align-justify</v-icon
+              >
+            </span>
+            <v-menu
+              v-for="col of Object.keys(Array(columns).fill(undefined))"
+              :key="`${row}:${col}`"
             >
-          </v-list-item>
-          <v-list-item v-for="(item, index) in items" :key="index">
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </ul>
-    <v-row>
-     FRONT-SIDE
+              <template v-slot:activator="{ on }">
+                <v-icon v-if="resolveSeatType(row, col) === 'seat'" v-on="on" class="seat-icon seat">mdi-seat</v-icon>
+                <v-icon v-else class="non-seat">mdi-texture</v-icon>
+              </template>
+              <v-list>
+                <v-list-item>
+                  <v-list-item-title
+                    >{{ col }} x {{ row }} ({{
+                      Number(row) * columns + Number(col)
+                    }}'th seat)</v-list-item-title
+                  >
+                </v-list-item>
+                <v-list-item v-for="(item, index) in items" :key="index">
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+          </ul>
+          <v-row class="mt-5 px-2">
+            FRONT-SIDE
+            <v-spacer></v-spacer>
+            <span class="mx-2">
+              <v-icon> mdi-seat</v-icon> SEAT
+            </span>
+            <span class="mx-2">
+              <v-icon> mdi-texture</v-icon> NON-SEAT
+            </span>
+            <span class="mx-2">
+              <v-icon> mdi-format-align-justify</v-icon> STAIRS
+            </span>
+          </v-row>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <v-card>
+          <v-card-title>
+
+          </v-card-title>
+          <v-card-text>
+
+          </v-card-text>
+        </v-card>
+      </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <style>

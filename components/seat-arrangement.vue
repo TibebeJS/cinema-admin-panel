@@ -135,7 +135,7 @@ body {
 
 .venue {
   padding: 20px;
-  border: 1px #e1e4e8 solid;
+  border: 10px #e1e4e8 solid;
   margin: 20px;
 }
 

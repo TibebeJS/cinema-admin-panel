@@ -107,7 +107,7 @@ export default {
       this.error = null
       try {
         const result = await this.$axios.$get(
-          `https://cinema.addis-dev.com/gast-cinema/api/logs/all`
+          `http://localhost:3001/gast-cinema/api/logs/all`
         )
         this.logs = result
       } catch (e) {

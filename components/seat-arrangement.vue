@@ -16,7 +16,7 @@
       >
         <template v-slot:activator="{ on }">
           <v-icon v-if="resolveSeatType(row, col) === 'seat'" v-on="on" class="seat-icon seat">mdi-seat</v-icon>
-          <v-icon v-else class="non-seat">mdi-drag-horizontal-variant</v-icon>
+          <v-icon v-else class="non-seat">mdi-texture</v-icon>
         </template>
         <v-list>
           <v-list-item>
@@ -43,7 +43,7 @@
   --square-size: 4%;
   --square-gap: 1%;
   --week-width: calc(var(--square-size) + var(--square-gap));
-  --seat-color: darkorange;
+  --seat-color: transparent;
   --non-seat-color: transparent;
   --taken-seat-color: cyan;
   --seat-hover-color: darkcyan;

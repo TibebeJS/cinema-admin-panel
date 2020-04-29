@@ -28,6 +28,7 @@
                 v-model="signin.emailAddress"
                 :rules="emailRules"
                 label="E-mail Address"
+                :disabled="signin.loading"
                 required
               ></v-text-field>
 
@@ -36,6 +37,7 @@
                 type="password"
                 :rules="passwordRules"
                 label="password"
+                :disabled="signin.loading"
                 required
               ></v-text-field>
 
@@ -45,7 +47,7 @@
                 required
               ></v-checkbox>
 
-              <v-btn :disabled="!signin.valid" @click="signIn" class="mr-4">
+              <v-btn :disabled="!signin.valid" @click="signIn" class="mr-4" :loading="signin.loading">
                 Sign in
               </v-btn>
 
@@ -79,7 +81,8 @@ export default {
         emailAddress: '',
         password: '',
         rememberMe: true,
-        valid: false
+        valid: false,
+        loading: false
       },
       signInError: null,
       emailRules: [
@@ -91,15 +94,12 @@ export default {
         v => v.length > 8 || 'Password too short'
       ],
       tab: null,
-      items: [
-        { tab: 'One', content: 'Tab 1 Content' },
-        { tab: 'Two', content: 'Tab 2 Content' }
-      ]
     }
   },
   methods: {
     signIn() {
       this.signInError = null
+      this.signin.loading = true;
       this.$store
         .dispatch('signInWithEmailAndPassword', this.signin)
         .then(() => {
@@ -113,6 +113,9 @@ export default {
         })
         .catch(e => {
           this.signInError = e.message
+        })
+        .finally(() => {
+          this.signin.loading = false;
         })
     }
   }

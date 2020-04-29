@@ -83,10 +83,11 @@
           :items="users"
           sort-by="calories"
           class="elevation-1"
+          :loading="loading"
         >
           <template v-slot:item.actions="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)">
-              mdi-pencil
+              mdi-account-off
             </v-icon>
             <v-icon small @click="deleteItem(item)">
               mdi-delete

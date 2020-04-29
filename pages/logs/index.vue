@@ -62,7 +62,13 @@
                 fill-dot
               >
                 <v-row justify="space-between">
-                  <v-col cols="7" v-text="log.msg"></v-col>
+                  <v-col cols="7">
+                    <v-chip small v-for="filter in getChips(log)" :key="filter">
+                      {{ filter }}
+                    </v-chip>
+                    <br/>
+                    {{log.msg}}
+                  </v-col>
                   <v-col class="text-right" cols="5">
                     {{ new Date(log.time).toUTCString() }}
                   </v-col>
@@ -85,14 +91,13 @@ export default {
     error: null,
     nonce: 2,
     filters: [
-      'Requests',
+      'Request',
       'Response',
-      'System Info',
-      'Errors',
-      'Console.log',
-      'Transactions',
-      'Admin Actions',
-      'Suspicious'
+      'Error',
+      'Others',
+      // 'Transactions',
+      // 'Admin Actions',
+      // 'Suspicious'
     ]
   }),
 
@@ -115,7 +120,20 @@ export default {
       } finally {
         this.loading = false
       }
+    },
+
+    getChips(log) {
+      const chips = [
+      ];
+
+      if (log.req) chips.push('Requests')
+      else if (log.res) chips.push('Response')
+      else if (log.err) chips.push('Error')
+      else chips.push('Others')
+
+      return chips
     }
+    
     // addEvent () {
     //   let { color, icon } = this.genAlert()
 

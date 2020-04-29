@@ -85,6 +85,12 @@
           class="elevation-1"
           :loading="loading"
         >
+        <template v-slot:item.emailVerified="{ item }">
+          <v-simple-checkbox v-model="item.emailVerified" disabled></v-simple-checkbox>
+        </template>
+         <template v-slot:item.disabled="{ item }">
+          <v-simple-checkbox v-model="item.disabled" disabled></v-simple-checkbox>
+        </template>
           <template v-slot:item.actions="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)">
               mdi-account-off

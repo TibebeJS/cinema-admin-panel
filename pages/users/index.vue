@@ -243,6 +243,7 @@ export default {
       }).then(() => {
         this.newUser = {}
         this.signupDialog = false
+        this.fetchUsers()
       }).catch(err => {
         this.signupError = err
       })

@@ -236,6 +236,7 @@ export default {
     },
 
     signUp() {
+      this.signupError = null
       this.$axios.$post(`http://localhost:3001/gast-cinema/api/users/create-user`, {
         ...this.newUser,
         phoneNumber: ['+251' + this.newUser.phoneNumber].join('')

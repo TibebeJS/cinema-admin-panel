@@ -1,7 +1,10 @@
 import { auth } from '@/services/fireinit.js'
 
 export default context => {
-  const { store, app: { $axios }} = context
+  const {
+    store,
+    app: { $axios }
+  } = context
 
   return new Promise((resolve, reject) => {
     auth.onAuthStateChanged(async user => {

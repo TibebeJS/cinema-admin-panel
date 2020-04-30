@@ -33,16 +33,17 @@
             </v-card-title>
             <v-card-text>
               <v-container>
-  <!-- emailVerified: false,
+                <!-- emailVerified: false,
   password: 'secretPassword',
   disabled: false -->
-   <v-alert type="error" v-if="signupError" width="100%">
-            <v-layout class="align-center">
-              <strong class="mr-2">ERROR:</strong> {{ signupError.message }}
-              <v-spacer></v-spacer>
-              <v-btn @click="signUp">Retry</v-btn>
-            </v-layout>
-          </v-alert>
+                <v-alert type="error" v-if="signupError" width="100%">
+                  <v-layout class="align-center">
+                    <strong class="mr-2">ERROR:</strong>
+                    {{ signupError.message }}
+                    <v-spacer></v-spacer>
+                    <v-btn @click="signUp">Retry</v-btn>
+                  </v-layout>
+                </v-alert>
                 <v-row>
                   <v-col>
                     <v-text-field
@@ -78,7 +79,6 @@
                       v-model="newUser.photoURL"
                       label="Photo URL"
                     ></v-text-field> -->
-
                   </v-col>
                 </v-row>
               </v-container>
@@ -107,12 +107,18 @@
           class="elevation-1"
           :loading="loading"
         >
-        <template v-slot:item.emailVerified="{ item }">
-          <v-simple-checkbox v-model="item.emailVerified" disabled></v-simple-checkbox>
-        </template>
-         <template v-slot:item.disabled="{ item }">
-          <v-simple-checkbox v-model="item.disabled" disabled></v-simple-checkbox>
-        </template>
+          <template v-slot:item.emailVerified="{ item }">
+            <v-simple-checkbox
+              v-model="item.emailVerified"
+              disabled
+            ></v-simple-checkbox>
+          </template>
+          <template v-slot:item.disabled="{ item }">
+            <v-simple-checkbox
+              v-model="item.disabled"
+              disabled
+            ></v-simple-checkbox>
+          </template>
           <template v-slot:item.actions="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)">
               mdi-account-off
@@ -139,9 +145,7 @@ export default {
     signupDialog: false,
     dialog: false,
     signupError: null,
-    newUser: {
-
-    },
+    newUser: {},
     headers: [
       {
         text: 'UID',
@@ -229,7 +233,7 @@ export default {
         this.editedIndex = -1
       }, 300)
     },
-   
+
     cancelSignup() {
       this.newUser = {}
       this.signupDialog = false
@@ -237,16 +241,19 @@ export default {
 
     signUp() {
       this.signupError = null
-      this.$axios.$post(`http://localhost:3001/gast-cinema/api/users/create-user`, {
-        ...this.newUser,
-        phoneNumber: ['+251' + this.newUser.phoneNumber].join('')
-      }).then(() => {
-        this.newUser = {}
-        this.signupDialog = false
-        this.fetchUsers()
-      }).catch(err => {
-        this.signupError = err
-      })
+      this.$axios
+        .$post(`http://localhost:3001/gast-cinema/api/users/create-user`, {
+          ...this.newUser,
+          phoneNumber: ['+251' + this.newUser.phoneNumber].join('')
+        })
+        .then(() => {
+          this.newUser = {}
+          this.signupDialog = false
+          this.fetchUsers()
+        })
+        .catch(err => {
+          this.signupError = err
+        })
     },
 
     save() {

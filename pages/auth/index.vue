@@ -47,7 +47,12 @@
                 required
               ></v-checkbox>
 
-              <v-btn :disabled="!signin.valid" @click="signIn" class="mr-4" :loading="signin.loading">
+              <v-btn
+                :disabled="!signin.valid"
+                @click="signIn"
+                class="mr-4"
+                :loading="signin.loading"
+              >
                 Sign in
               </v-btn>
 
@@ -93,13 +98,13 @@ export default {
         v => !!v || 'Password is required',
         v => v.length > 8 || 'Password too short'
       ],
-      tab: null,
+      tab: null
     }
   },
   methods: {
     signIn() {
       this.signInError = null
-      this.signin.loading = true;
+      this.signin.loading = true
       this.$store
         .dispatch('signInWithEmailAndPassword', this.signin)
         .then(() => {
@@ -115,7 +120,7 @@ export default {
           this.signInError = e.message
         })
         .finally(() => {
-          this.signin.loading = false;
+          this.signin.loading = false
         })
     }
   }

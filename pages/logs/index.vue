@@ -66,8 +66,8 @@
                     <v-chip small v-for="filter in getChips(log)" :key="filter">
                       {{ filter }}
                     </v-chip>
-                    <br/>
-                    {{log.msg}}
+                    <br />
+                    {{ log.msg }}
                   </v-col>
                   <v-col class="text-right" cols="5">
                     {{ new Date(log.time).toUTCString() }}
@@ -94,7 +94,7 @@ export default {
       'Request',
       'Response',
       'Error',
-      'Others',
+      'Others'
       // 'Transactions',
       // 'Admin Actions',
       // 'Suspicious'
@@ -123,8 +123,7 @@ export default {
     },
 
     getChips(log) {
-      const chips = [
-      ];
+      const chips = []
 
       if (log.req) chips.push('Requests')
       else if (log.res) chips.push('Response')
@@ -133,7 +132,7 @@ export default {
 
       return chips
     }
-    
+
     // addEvent () {
     //   let { color, icon } = this.genAlert()
 

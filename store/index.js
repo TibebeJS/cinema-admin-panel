@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import firebase, {auth, GoogleProvider} from '@/services/fireinit.js'
+import firebase, { auth, GoogleProvider } from '@/services/fireinit.js'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -12,12 +12,12 @@ const createStore = () => {
       }
     },
     mutations: {
-      setUser (state, payload) {
+      setUser(state, payload) {
         state.user = payload
       }
     },
     actions: {
-      autoSignIn ({commit}, payload) {
+      autoSignIn({ commit }, payload) {
         commit('setUser', payload)
       },
 
@@ -25,29 +25,34 @@ const createStore = () => {
         return await auth.currentUser.getIdToken()
       },
 
-      signInWithGoogle ({commit}) {
+      signInWithGoogle({ commit }) {
         return new Promise((resolve, reject) => {
           auth.signInWithRedirect(GoogleProvider)
           resolve()
         })
       },
-     
-      signInWithEmailAndPassword({commit}, payload) {
+
+      signInWithEmailAndPassword({ commit }, payload) {
         return new Promise(async (resolve, reject) => {
-          try{
-            await auth.signInWithEmailAndPassword(payload.emailAddress, payload.password)
+          try {
+            await auth.signInWithEmailAndPassword(
+              payload.emailAddress,
+              payload.password
+            )
             resolve()
-          }
-          catch(e) {
+          } catch (e) {
             reject(e)
           }
         })
       },
 
-      signOut ({commit}) {
-        return auth.signOut().then(() => {
-          commit('setUser', null)
-        }).catch(err => console.log(error))
+      signOut({ commit }) {
+        return auth
+          .signOut()
+          .then(() => {
+            commit('setUser', null)
+          })
+          .catch(err => console.log(error))
       }
     }
   })

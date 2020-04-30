@@ -36,6 +36,13 @@
   <!-- emailVerified: false,
   password: 'secretPassword',
   disabled: false -->
+   <v-alert type="error" v-if="signupError" width="100%">
+            <v-layout class="align-center">
+              <strong class="mr-2">ERROR:</strong> {{ signupError.message }}
+              <v-spacer></v-spacer>
+              <v-btn @click="signUp">Retry</v-btn>
+            </v-layout>
+          </v-alert>
                 <v-row>
                   <v-col>
                     <v-text-field
@@ -131,6 +138,7 @@ export default {
     users: [],
     signupDialog: false,
     dialog: false,
+    signupError: null,
     newUser: {
 
     },
@@ -228,14 +236,14 @@ export default {
     },
 
     signUp() {
-      // this.newUser = {}
       this.$axios.$post(`http://localhost:3001/gast-cinema/api/users/create-user`, {
         ...this.newUser,
         phoneNumber: ['+251' + this.newUser.phoneNumber].join('')
       }).then(() => {
+        this.newUser = {}
         this.signupDialog = false
       }).catch(err => {
-        console.log(err)
+        this.signupError = err
       })
     },
 

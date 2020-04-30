@@ -30,7 +30,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/fireauth.js'],
+  plugins: ['~/plugins/fireauth.js', '~/plugins/axios.js'],
   
   router: {
     middleware: 'router-auth'

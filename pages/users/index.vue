@@ -39,7 +39,7 @@
                 <v-row>
                   <v-col>
                     <v-text-field
-                      v-model="newUser.displayName"
+                      v-model="newUser.fullName"
                       label="Full Name"
                       placeholder="admin's first name + last name"
                     ></v-text-field>
@@ -48,7 +48,7 @@
                 <v-row>
                   <v-col>
                     <v-text-field
-                      v-model="newUser.email"
+                      v-model="newUser.emailAddress"
                       label="Email Address"
                       placeholder="type admin's email address here"
                     ></v-text-field>

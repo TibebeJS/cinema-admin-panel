@@ -228,8 +228,15 @@ export default {
     },
 
     signUp() {
-      this.newUser = {}
-      this.signupDialog = false
+      // this.newUser = {}
+      this.$axios.$post(`http://localhost:3001/gast-cinema/api/users/create-user`, {
+        ...this.newUser,
+        phoneNumber: ['+251' + this.newUser.phoneNumber].join('')
+      }).then(() => {
+        this.signupDialog = false
+      }).catch(err => {
+        console.log(err)
+      })
     },
 
     save() {

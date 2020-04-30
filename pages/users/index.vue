@@ -18,7 +18,7 @@
       <v-card-title>
         <span class="title">Users</span>
         <v-spacer></v-spacer>
-        <v-dialog v-model="dialog" max-width="800px">
+        <v-dialog v-model="signupDialog" max-width="800px">
           <template v-slot:activator="{ on }">
             <v-btn color="primary" dark class="mb-2" v-on="on">
               <v-icon class="pa-1">
@@ -79,8 +79,8 @@
 
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn text @click="close">Cancel</v-btn>
-              <v-btn text @click="save">Register</v-btn>
+              <v-btn text @click="cancelSignup">Cancel</v-btn>
+              <v-btn text @click="signUp">Register</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -129,6 +129,7 @@ export default {
     loading: false,
     error: null,
     users: [],
+    signupDialog: false,
     dialog: false,
     newUser: {
 
@@ -219,6 +220,16 @@ export default {
         this.editedItem = Object.assign({}, this.defaultItem)
         this.editedIndex = -1
       }, 300)
+    },
+   
+    cancelSignup() {
+      this.newUser = {}
+      this.signupDialog = false
+    },
+
+    signUp() {
+      this.newUser = {}
+      this.signupDialog = false
     },
 
     save() {

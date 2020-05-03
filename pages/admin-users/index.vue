@@ -144,12 +144,15 @@
               Active
             </v-chip>
             <v-chip v-else class="pl-2" color="red" text-color="white" small>
-              disabled
+              Suspended
             </v-chip>
           </template>
           <template v-slot:item.actions="{ item }">
-            <v-icon small class="mr-2" @click="editItem(item)">
+            <v-icon v-if="!item.disabled" small class="mr-2" @click="suspendUser(item)">
               mdi-account-off
+            </v-icon>
+            <v-icon v-else small class="mr-2" @click="unsuspendUser(item)">
+              mdi-account
             </v-icon>
             <v-icon small @click="deleteUser(item)">
               mdi-delete
@@ -182,8 +185,8 @@ export default {
         value: 'uid'
       },
       { text: 'Email Address', value: 'email' },
-      { text: 'Email Verified', value: 'emailVerified' },
-      { text: 'Disabled', value: 'disabled' },
+      { text: 'Email Verification Status', value: 'emailVerified' },
+      { text: 'Access Status', value: 'disabled' },
       { text: 'Last Signed In', value: 'metadata.lastSignInTime' },
       { text: 'Created At', value: 'metadata.creationTime' },
       { text: 'Actions', value: 'actions', sortable: false }
@@ -253,6 +256,28 @@ export default {
         this.loading = true
         await this.$axios.$delete(
           `http://localhost:3001/gast-cinema/api/users/${user.uid}`
+        )
+        await this.fetchUsers()
+        this.loading = false
+      }
+    },
+    
+    async suspendUser(user) {
+      if (confirm('Are you sure you want to suspend this user?')) {
+        this.loading = true
+        await this.$axios.$post(
+          `http://localhost:3001/gast-cinema/api/users/${user.uid}/suspend`
+        )
+        await this.fetchUsers()
+        this.loading = false
+      }
+    },
+    
+    async unsuspendUser(user) {
+      if (confirm('Are you sure you want to suspend this user?')) {
+        this.loading = true
+        await this.$axios.$post(
+          `http://localhost:3001/gast-cinema/api/users/${user.uid}/unsuspend`
         )
         await this.fetchUsers()
         this.loading = false

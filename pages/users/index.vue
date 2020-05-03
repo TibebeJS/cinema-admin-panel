@@ -113,7 +113,6 @@
           :loading="loading"
         >
           <template v-slot:item.emailVerified="{ item }">
-            
             <v-chip
               v-if="item.emailVerified"
               class="pl-2"
@@ -126,26 +125,27 @@
               </v-avatar>
               Verified
             </v-chip>
-           
-            <v-chip
-              v-else
-               class="pl-2"
-              color="red"
-              text-color="white"
-              small
-            >
+
+            <v-chip v-else class="pl-2" color="red" text-color="white" small>
               <v-avatar left>
                 <v-icon>mdi-alert-circle</v-icon>
               </v-avatar>
               Unverified
             </v-chip>
-
           </template>
           <template v-slot:item.disabled="{ item }">
-            <v-simple-checkbox
-              v-model="item.disabled"
+            <v-chip
+              v-if="!item.disabled"
+              class="pl-2"
+              color="teal"
+              text-color="white"
+              small
+            >
+              Active
+            </v-chip>
+            <v-chip v-else class="pl-2" color="red" text-color="white" small>
               disabled
-            ></v-simple-checkbox>
+            </v-chip>
           </template>
           <template v-slot:item.actions="{ item }">
             <v-icon small class="mr-2" @click="editItem(item)">
@@ -250,8 +250,9 @@ export default {
 
     async deleteUser(user) {
       if (confirm('Are you sure you want to delete this user?')) {
-        await this.$axios
-        .$delete(`http://localhost:3001/gast-cinema/api/users/${user.uid}`)
+        await this.$axios.$delete(
+          `http://localhost:3001/gast-cinema/api/users/${user.uid}`
+        )
         await this.fetchUsers()
       }
     },

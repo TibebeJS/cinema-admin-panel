@@ -9,13 +9,13 @@
                 <v-list-item-title>{{ menu.title }}</v-list-item-title>
               </template>
 
-              <template v-for="(subMenu, i) in menu.submenus">
+              <template v-for="subMenu in menu.submenus">
                 <v-list-group
                   v-if="subMenu.submenus"
                   no-action
                   sub-group
                   value="true"
-                  :key="i"
+                  :key="subMenu.key"
                 >
                   <template v-slot:activator>
                     <v-list-item-icon class="mr-2">
@@ -28,10 +28,10 @@
                   </template>
 
                   <v-list-item
-                    v-for="(subSubMenu, i) in subMenu.submenus"
-                    :key="i"
+                    v-for="subSubMenu in subMenu.submenus"
                     :to="subSubMenu.to"
                     router
+                    :key="subSubMenu.key"
                   >
                     <v-list-item-title
                       v-text="subSubMenu.title"
@@ -43,7 +43,7 @@
                 </v-list-group>
                 <v-list-item
                   v-else-if="subMenu.to"
-                  :key="subMenu.title"
+                  :key="subMenu.key"
                   :to="subMenu.to"
                   router
                 >
@@ -57,7 +57,7 @@
               </template>
             </v-list-group>
           </template>
-          <v-list-item v-else-if="menu.to" :key="i" :to="menu.to" router>
+          <v-list-item v-else-if="menu.to" :key="menu.key" :to="menu.to" router>
             <v-list-item-action>
               <v-icon>{{ menu.icon }}</v-icon>
             </v-list-item-action>
@@ -189,56 +189,67 @@ export default {
         {
           icon: 'mdi-calendar',
           title: 'Schedules',
-          to: '/schedules'
+          to: '/schedules',
+          key: 'schedules'
         },
         {
           icon: 'mdi-film',
           title: 'Cinemas',
-          to: '/cinemas'
+          to: '/cinemas',
+          key: 'cinemas'
         },
         {
           icon: 'mdi-server-security',
           title: 'Server Logs',
-          to: '/logs'
+          to: '/logs',
+          key: 'logs'
         },
         {
           icon: 'mdi-shield-account',
-          title: 'Users',
-          to: '/users'
+          title: 'Admin Users',
+          to: '/admin-users',
+          key: 'admin-users'
         },
         {
           icon: 'mdi-lifebuoy',
           title: 'Supports',
+          key: 'supports',
           submenus: [
             {
               icon: 'mdi-mail',
               title: 'Mail',
+              key: 'supports-mail',
               submenus: [
                 {
                   icon: 'mdi-inbox-arrow-down',
                   title: 'Inbox',
-                  to: '/supports/mail/inbox'
+                  to: '/supports/mail/inbox',
+                  key: 'supports-mail-inbox'
                 },
                 {
                   icon: 'mdi-cog',
                   title: 'Settings',
-                  to: '/supports/mail/settings'
+                  to: '/supports/mail/settings',
+                  key: 'supports-mail-settings'
                 }
               ]
             },
             {
               icon: 'mdi-telegram',
               title: 'Telegram',
+              key: 'supports-telegram',
               submenus: [
                 {
                   icon: 'mdi-inbox-arrow-down',
                   title: 'Inbox',
-                  to: '/supports/telegram/inbox'
+                  to: '/supports/telegram/inbox',
+                  key: 'supports-telegram-inbox'
                 },
                 {
                   icon: 'mdi-cog',
                   title: 'Settings',
-                  to: '/supports/telegram/settings'
+                  to: '/supports/telegram/settings',
+                  key: 'supports-telegram-settings'
                 }
               ]
             }

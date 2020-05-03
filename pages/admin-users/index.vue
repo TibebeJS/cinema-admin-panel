@@ -107,7 +107,7 @@
         </v-alert>
         <v-data-table
           :headers="headers"
-          :items="users"
+          :items="!loading ? users : []"
           sort-by="calories"
           class="elevation-1"
           :loading="loading"
@@ -250,10 +250,12 @@ export default {
 
     async deleteUser(user) {
       if (confirm('Are you sure you want to delete this user?')) {
+        this.loading = true
         await this.$axios.$delete(
           `http://localhost:3001/gast-cinema/api/users/${user.uid}`
         )
         await this.fetchUsers()
+        this.loading = false
       }
     },
 
@@ -272,6 +274,8 @@ export default {
 
     signUp() {
       this.signupError = null
+      this.loading = true
+
       this.$axios
         .$post(`http://localhost:3001/gast-cinema/api/users/create-user`, {
           ...this.newUser,
@@ -284,6 +288,9 @@ export default {
         })
         .catch(err => {
           this.signupError = err
+        })
+        .finally(() => {
+          this.loading = false
         })
     },
 

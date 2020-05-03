@@ -113,10 +113,33 @@
           :loading="loading"
         >
           <template v-slot:item.emailVerified="{ item }">
-            <v-simple-checkbox
-              v-model="item.emailVerified"
-              disabled
-            ></v-simple-checkbox>
+            
+            <v-chip
+              v-if="item.emailVerified"
+              class="pl-2"
+              color="teal"
+              text-color="white"
+              small
+            >
+              <v-avatar left>
+                <v-icon>mdi-checkbox-marked-circle</v-icon>
+              </v-avatar>
+              Verified
+            </v-chip>
+           
+            <v-chip
+              v-else
+               class="pl-2"
+              color="red"
+              text-color="white"
+              small
+            >
+              <v-avatar left>
+                <v-icon>mdi-alert-circle</v-icon>
+              </v-avatar>
+              Unverified
+            </v-chip>
+
           </template>
           <template v-slot:item.disabled="{ item }">
             <v-simple-checkbox

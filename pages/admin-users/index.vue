@@ -29,12 +29,12 @@
               <v-icon class="pa-1">
                 mdi-account-plus
               </v-icon>
-              Create new user
+              Create new admin user
             </v-btn>
           </template>
           <v-card class="pa-2">
             <v-card-title>
-              <span class="headline">Create a new user</span>
+              <span class="headline">Create a new administrator</span>
             </v-card-title>
             <v-card-text>
               <v-container>
@@ -54,7 +54,7 @@
                     <v-text-field
                       v-model="newUser.fullName"
                       label="Full Name"
-                      placeholder="admin's first name + last name"
+                      placeholder="first name + last name"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -63,7 +63,7 @@
                     <v-text-field
                       v-model="newUser.emailAddress"
                       label="Email Address"
-                      placeholder="type admin's email address here"
+                      placeholder="admin's email address"
                     ></v-text-field>
                   </v-col>
                   <v-col cols="4" class="ml-4">

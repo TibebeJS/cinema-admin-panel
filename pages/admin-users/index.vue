@@ -184,6 +184,7 @@ export default {
         sortable: false,
         value: 'uid'
       },
+      { text: 'Full Name', value: 'displayName' },
       { text: 'Email Address', value: 'email' },
       { text: 'Email Verification Status', value: 'emailVerified' },
       { text: 'Access Status', value: 'disabled' },
@@ -274,7 +275,7 @@ export default {
     },
     
     async unsuspendUser(user) {
-      if (confirm('Are you sure you want to suspend this user?')) {
+      if (confirm('Are you sure you want to unsuspend this user?')) {
         this.loading = true
         await this.$axios.$post(
           `http://localhost:3001/gast-cinema/api/users/${user.uid}/unsuspend`

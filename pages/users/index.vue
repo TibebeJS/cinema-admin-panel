@@ -18,6 +18,11 @@
       <v-card-title>
         <span class="title">Users</span>
         <v-spacer></v-spacer>
+        <v-btn text class="mb-2 mx-2" :loading="loading" @click="fetchUsers">
+          <v-icon>
+            mdi-reload
+          </v-icon>
+        </v-btn>
         <v-dialog v-model="signupDialog" max-width="800px">
           <template v-slot:activator="{ on }">
             <v-btn color="primary" dark class="mb-2" v-on="on">

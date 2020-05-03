@@ -2,74 +2,70 @@
   <v-app dark>
     <v-navigation-drawer :mini-variant="drawer" clipped fixed app>
       <v-list>
-        <template v-for="(item, i) in items">
-          <template v-if="item.submenus">
-            <v-list-group
-             :key="i"
-              prepend-icon="mdi-lifebuoy"
-              value="true"
-            >
+        <template v-for="(menu, i) in menus">
+          <template v-if="menu.submenus">
+            <v-list-group :key="i" prepend-icon="mdi-lifebuoy" value="true">
               <template v-slot:activator>
-                <v-list-item-title>{{item.title}}</v-list-item-title>
+                <v-list-item-title>{{ menu.title }}</v-list-item-title>
               </template>
 
-              <v-list-group
-                no-action
-                sub-group
-                value="true"
-              >
-                <template v-slot:activator>
-                  <v-list-item-content>
-                    <v-list-item-title>Admin</v-list-item-title>
-                  </v-list-item-content>
-                </template>
-
-                <v-list-item
-                  v-for="(admin, i) in admins"
+              <template v-for="(subMenu, i) in menu.submenus">
+                <v-list-group
+                  v-if="subMenu.submenus"
+                  no-action
+                  sub-group
+                  value="true"
                   :key="i"
-                  link
                 >
-                  <v-list-item-title v-text="admin[0]"></v-list-item-title>
-                  <v-list-item-icon>
-                    <v-icon v-text="admin[1]"></v-icon>
-                  </v-list-item-icon>
-                </v-list-item>
-              </v-list-group>
+                  <template v-slot:activator>
+                    <v-list-item-icon class="mr-2">
+                      <v-icon v-text="subMenu.icon"></v-icon>
+                    </v-list-item-icon>
 
-              <v-list-group
-                sub-group
-                no-action
-              >
-                <template v-slot:activator>
-                  <v-list-item-content>
-                    <v-list-item-title>Actions</v-list-item-title>
-                  </v-list-item-content>
-                </template>
+                    <v-list-item-content>
+                      <v-list-item-title>{{ subMenu.title }}</v-list-item-title>
+                    </v-list-item-content>
+                  </template>
+
+                  <v-list-item
+                    v-for="(subSubMenu, i) in subMenu.submenus"
+                    :key="i"
+                    :to="subSubMenu.to"
+                    router
+                  >
+                    <v-list-item-title
+                      v-text="subSubMenu.title"
+                    ></v-list-item-title>
+                    <v-list-item-icon>
+                      <v-icon v-text="subSubMenu.icon"></v-icon>
+                    </v-list-item-icon>
+                  </v-list-item>
+                </v-list-group>
                 <v-list-item
-                  v-for="(crud, i) in cruds"
-                  :key="i"
-                  @click=""
+                  v-else-if="subMenu.to"
+                  :key="subMenu.title"
+                  :to="subMenu.to"
+                  router
                 >
-                  <v-list-item-title v-text="crud[0]"></v-list-item-title>
                   <v-list-item-action>
-                    <v-icon v-text="crud[1]"></v-icon>
+                    <v-icon>{{ subMenu.icon }}</v-icon>
                   </v-list-item-action>
+                  <v-list-item-content>
+                    <v-list-item-title v-text="subMenu.title" />
+                  </v-list-item-content>
                 </v-list-item>
-              </v-list-group>
+              </template>
             </v-list-group>
           </template>
-        <v-list-item v-else :key="i" :to="item.to" router>
-
+          <v-list-item v-else-if="menu.to" :key="i" :to="menu.to" router>
             <v-list-item-action>
-              <v-icon>{{ item.icon }}</v-icon>
+              <v-icon>{{ menu.icon }}</v-icon>
             </v-list-item-action>
             <v-list-item-content>
-              <v-list-item-title v-text="item.title" />
+              <v-list-item-title v-text="menu.title" />
             </v-list-item-content>
           </v-list-item>
-             
-          </template>
-
+        </template>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar clipped-left fixed app>
@@ -184,7 +180,7 @@ export default {
     return {
       drawer: false,
       languageSelected: 'english',
-      items: [
+      menus: [
         {
           icon: 'mdi-apps',
           title: 'Welcome',
@@ -212,9 +208,40 @@ export default {
         },
         {
           icon: 'mdi-lifebuoy',
-          title: 'Supports e-mail',
+          title: 'Supports',
           submenus: [
-            
+            {
+              icon: 'mdi-mail',
+              title: 'Mail',
+              submenus: [
+                {
+                  icon: 'mdi-inbox-arrow-down',
+                  title: 'Inbox',
+                  to: '/supports/mail/inbox'
+                },
+                {
+                  icon: 'mdi-cog',
+                  title: 'Settings',
+                  to: '/supports/mail/settings'
+                }
+              ]
+            },
+            {
+              icon: 'mdi-telegram',
+              title: 'Telegram',
+              submenus: [
+                {
+                  icon: 'mdi-inbox-arrow-down',
+                  title: 'Inbox',
+                  to: '/supports/telegram/inbox'
+                },
+                {
+                  icon: 'mdi-cog',
+                  title: 'Settings',
+                  to: '/supports/telegram/settings'
+                }
+              ]
+            }
           ]
         }
       ],

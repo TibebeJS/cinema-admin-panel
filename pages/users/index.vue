@@ -123,7 +123,7 @@
             <v-icon small class="mr-2" @click="editItem(item)">
               mdi-account-off
             </v-icon>
-            <v-icon small @click="deleteItem(item)">
+            <v-icon small @click="deleteUser(item)">
               mdi-delete
             </v-icon>
           </template>
@@ -220,10 +220,12 @@ export default {
       this.dialog = true
     },
 
-    deleteItem(item) {
-      const index = this.desserts.indexOf(item)
-      confirm('Are you sure you want to delete this item?') &&
-        this.desserts.splice(index, 1)
+    async deleteUser(user) {
+      if (confirm('Are you sure you want to delete this user?')) {
+        await this.$axios
+        .$delete(`http://localhost:3001/gast-cinema/api/users/${user.uid}`)
+        await this.fetchUsers()
+      }
     },
 
     close() {
